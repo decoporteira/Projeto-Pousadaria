@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      inn: "Pousada"
+    attributes:
+      inn:
+        trade_name: "Nome fantasia"
+        company_name: "Razão social"
+        registration_number: "CNPJ"
+        phone: "Telefone"
+        email: "E-mail"
+        address: "Endereço"
+        neighborhood: "Bairro"
+        city: "Cidade"
+        zip_code: "CEP"
+        description: "Descrição"
+        payment_methods: "Métodos de pagamento"
+        pet: "Animais"
+        rules: "Regras"
+        check_in: "Entrada"
+        check_out: "Saída"
+        status: Status
