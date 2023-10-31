@@ -1,0 +1,23 @@
+<h2>Sua Pousada</h2>
+<% if @inn.nil? %>
+  <p>Não existe Pousada cadastrada.</p>
+<% else %>
+  <%= @inn.trade_name %>
+  <section id="inn">
+    <div>
+      <dl>
+        <dt>Nome Fantasia:</dt>
+        <dd><%= @inn.trade_name %></dd>
+        <dt>Razão Social:</dt>
+        <dd><%= @inn.company_name %></dd>
+        <dt>CNPJ:</dt>
+        <dd><%= @inn.registration_number %></dd>
+        <dt>Telefone:</dt>
+        <dd><%= @inn.phone %></dd>
+        <dt>Email:</dt>
+        <dd><%= @inn.email %></dd>
+      </dl>
+    </div>
+    <%= link_to 'Detalhes', inn_path(@inn)%>
+  <% end%>
+</section>

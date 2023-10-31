@@ -19,7 +19,8 @@ describe 'Usuário cria conta' do
             click_on 'Criar conta'
         end
         
-        expect(page).to have_content 'Bem vindo! Você realizou seu registro com sucesso.'
+        expect(current_path).to eq new_inn_path
+        expect(page).to have_content 'Você não tem uma pousada cadastrada. Por favor, complete seu cadastro.'
         expect(page).not_to have_link 'Entrar'
         expect(page).to have_button 'Sair'
         within ('nav') do

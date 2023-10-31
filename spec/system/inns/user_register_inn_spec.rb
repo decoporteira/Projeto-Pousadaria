@@ -27,12 +27,12 @@ describe 'Usuário cadastra pousada' do
         select 'ativa', from: 'Status'
         click_on 'Salvar'
         
+        
         #
        
         #assert
         expect(page).to have_content 'Pousada cadastrada com sucesso.'
         expect(page).not_to have_link 'Entrar'
         expect(page).to have_button 'Sair'
-         inn_count = Inn.all.length
     end
 end

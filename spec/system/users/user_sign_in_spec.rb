@@ -13,7 +13,8 @@ describe 'Usuário se autentica' do
             click_on 'Entrar'
         end
         #assert
-        expect(page).to have_content 'Login efetuado com sucesso.'
+        expect(current_path).to eq new_inn_path
+        expect(page).to have_content 'Você não tem uma pousada cadastrada. Por favor, complete seu cadastro.'
         expect(page).not_to have_link 'Entrar'
         expect(page).to have_button 'Sair'
         within ('nav') do
