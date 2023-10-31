@@ -13,6 +13,7 @@
       <% if user_signed_in? %>
         olá <%= current_user.name%>
         <%= current_user.email%>
+        <%= link_to 'Cadastrar pousada', new_inn_path%>
         <%= link_to 'Seus dados', edit_user_registration_path%>
         <%= button_to 'Sair', destroy_user_session_path, method: :delete, class:'btn' %>
       <% else %>
