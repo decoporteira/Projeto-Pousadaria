@@ -20,7 +20,7 @@ describe 'Usuário visita página de inicial de preços' do
                     neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', payment_methods: 'Apenas PIX', pet: 'permitidos', rules: 'Não pode ouvir música alta.',
                         check_in: '12:00', check_out: '14:00', status: "ativa", user_id: user.id)
         room = Room.create!(name: 'Quarto Pokémon', description: 'Descrição: Quarto idéntico ao quarto de Ash.', size: 20, guest: 2, daily_rate: 20, balcony: 'possui', air_conditioner: 'não possui ar condicionado', available: 'sim', tv: 'não possui tv', wardrobe: 'possui guarda-roupas', safe: 'possui cofre', accessible: 'quarto sem acessibilidade', inn_id: inn.id)
-        Price.create!(new_rate: 23, start_date: '2023-12-23', final_date: '2023-12-24', room_id: room.id)
+        Price.create!(new_rate: 23, start_date: '2023-12-28', final_date: '2023-12-29', room_id: room.id)
         # cadastrar preços
         visit(root_path)
         login(user)

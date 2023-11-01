@@ -34,8 +34,8 @@ describe 'Usuário visita página de inicial de preços' do
         click_on 'Detalhes'  
         click_on 'Cadastrar novos preços'
         fill_in 'Nova diária', with: 23
-        fill_in 'Início', with: 231212
-        fill_in 'Final', with: 141212
+        fill_in 'Início', with: '2023-12-23'
+        fill_in 'Final', with: '2023-12-24'
         click_on 'Salvar'
 
 
