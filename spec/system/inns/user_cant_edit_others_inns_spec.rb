@@ -12,14 +12,14 @@ describe 'Usuário visita tenta visitar tela de quarto que não é dele' do
                             check_in: '12:00', check_out: '14:00', status: "ativa", user_id: user_two.id)
         Room.create!(name: 'Quarto Pokémon', description: 'Descrição: Quarto idéntico ao quarto de Ash.', size: 20, guest: 2, daily_rate: 20, balcony: 'possui', air_conditioner: 'não possui ar condicionado', 
         available: 'sim', tv: 'não possui tv', wardrobe: 'possui guarda-roupas', safe: 'possui cofre', accessible: 'quarto sem acessibilidade', inn_id: inn_two.id)  
-                       
+                  
         visit(root_path)
-        login(user_two)
-        #p current_user
-        visit(edit_room_path(room.id))
-                               
-        # não consigo acessar o current_user dentro do teste
-        #expect(current_path).to eq root_path
+        login(user_one)
+        visit(edit_inn_path(inn_two.id))
+         
+        expect(page).to have_content('Pousadaria')
+        expect(current_path).to eq root_path
+        
        
     end
     

@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      price: "Preço"
+    attributes:
+      price:
+        new_rate: "Nova diária"
+        start_date: "Início"
+        final_date: "Final"

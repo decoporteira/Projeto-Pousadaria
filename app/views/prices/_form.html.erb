@@ -1,0 +1,19 @@
+<%= form_with(model: @price) do |f| %>
+  <div>
+    <%= f.label :new_rate %>
+    <%= f.text_field :new_rate %>
+  </div>
+  <div>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date%>
+  </div>
+  <div>
+    <%= f.label :final_date%>
+    <%= f.date_field :final_date%>
+  </div>
+  <div>
+    <%=  @room_id %>
+    <%= f.hidden_field :room_id, value: @room_id %>
+    <%= f.submit 'Salvar' %>
+  </div>
+<% end %>

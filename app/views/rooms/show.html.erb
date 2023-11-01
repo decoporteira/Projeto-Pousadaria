@@ -31,7 +31,8 @@
         <dt>Disponibilidade:</dt>
         <dd><%= @room.available %></dd>
       </dl>
-      <<%= link_to 'Editar', edit_room_path %>>
+      <%= link_to 'Editar', edit_room_path %>
+      <%= link_to 'Cadastrar novos preços', new_price_path(@room.id)%>
     </div>
   <% end%>
 </section>

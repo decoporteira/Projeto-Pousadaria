@@ -1,0 +1,20 @@
+<h1>Preços por período</h1>
+<%= link_to 'Cadastrar novos preços', new_price_path%>
+<% if @inn.nil? %>
+  <p>Não existe Pousada cadastrada.</p>
+<% else %>
+  <% @prices.each do |price|%>
+    <section id="inn">
+      <div>
+        <dl>
+          <dt>Nova diária:</dt>
+          <dd><%= price.new_rate%></dd>
+          <dt>Início:</dt>
+          <dd><%= price.start_date%></dd>
+          <dt>Final:</dt>
+          <dd> <%= price.final_date%></dd>
+        </dl>
+      </div>
+    <% end%>
+  <%end%>
+</section>

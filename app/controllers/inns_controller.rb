@@ -1,7 +1,7 @@
 class InnsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_inn, only: [:show, :edit, :update] 
-    before_action :can_edit, only: [:edit, :update, :destroy]
+    before_action :cant_edit, only: [:edit, :update, :destroy]
 
  
     def new
@@ -52,7 +52,9 @@ class InnsController < ApplicationController
         @inn = Inn.find(params[:id])
     end
 
-    def can_edit
+    def cant_edit
+        current_user.id
+        
         redirect_to root_path unless @inn.user_id == current_user.id
     end
 end
