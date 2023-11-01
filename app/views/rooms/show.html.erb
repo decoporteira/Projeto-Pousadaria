@@ -1,0 +1,37 @@
+<h2>Detalhes do Quarto</h2>
+<% if @room.nil? %>
+  <p>Não existe Quarto cadastrado.</p>
+<% else %>
+  <%= @room.name %>
+  <section id="room">
+    <div>
+      <dl>
+        <dt>Ar condicionado: </dt>
+        <dd><%= @room.air_conditioner %></dd>
+        <dt>Nome:</dt>
+        <dd><%= @room.name %></dd>
+        <dt>Descrição:</dt>
+        <dd><%= @room.description %></dd>
+        <dt>Tamanho:</dt>
+        <dd><%= @room.size %></dd>
+        <dt>Hóspedes:</dt>
+        <dd><%= @room.guest %></dd>
+        <dt>Diária:</dt>
+        <dd><%= @room.daily_rate %></dd>
+        <dt>Varanda: </dt>
+        <dd><%= @room.balcony %></dd>
+        <dt>Tv:</dt>
+        <dd><%= @room.tv %></dd>
+        <dt>Guarda-roupas:</dt>
+        <dd><%= @room.wardrobe %></dd>
+        <dt>Cofre:</dt>
+        <dd><%= @room.safe %></dd>
+        <dt>Acessibilidade:</dt>
+        <dd><%= @room.accessible %></dd>
+        <dt>Disponibilidade:</dt>
+        <dd><%= @room.available %></dd>
+      </dl>
+      <<%= link_to 'Editar', edit_room_path %>>
+    </div>
+  <% end%>
+</section>

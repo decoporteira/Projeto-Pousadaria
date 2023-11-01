@@ -1,0 +1,53 @@
+<%= form_with(model: @room) do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :guest %>
+    <%= f.text_field :guest %>
+  </div>
+  <div>
+    <%= f.label :size %>
+    <%= f.number_field :size %>
+  </div>
+  <div>
+    <%= f.label :daily_rate %>
+    <%= f.text_field :daily_rate %>
+  </div>
+  <div>
+    <%= f.label :balcony %>
+    <%= f.select :balcony, options_for_select(Room.balconies.map {|key, value| [key.titleize, Room.balconies.key(value)]}, @room.balcony) %>
+  </div>
+  <div>
+    <%= f.label :air_conditioner %>
+    <%= f.select :air_conditioner, options_for_select(Room.air_conditioners.map {|key, value| [key.titleize, Room.air_conditioners.key(value)]}, @room.air_conditioner) %>
+  </div>
+  <div>
+    <%= f.label :tv %>
+    <%= f.select :tv, options_for_select(Room.tvs.map {|key, value| [key.titleize, Room.tvs.key(value)]}, @room.tv) %>
+  </div>
+  <div>
+    <%= f.label :wardrobe %>
+    <%= f.select :wardrobe, options_for_select(Room.wardrobes.map {|key, value| [key.titleize, Room.wardrobes.key(value)]}, @room.wardrobe) %>
+  </div>
+  <div>
+    <%= f.label :safe %>
+    <%= f.select :safe, options_for_select(Room.saves.map {|key, value| [key.titleize, Room.saves.key(value)]}, @room.safe) %>
+  </div>
+  <div>
+    <%= f.label :available %>
+    <%= f.select :available, options_for_select(Room.availables.map {|key, value| [key.titleize, Room.availables.key(value)]}, @room.available) %>
+  </div>
+  <div>
+    <%= f.label :accessible %>
+    <%= f.select :accessible, options_for_select(Room.accessibles.map {|key, value| [key.titleize, Room.accessibles.key(value)]}, @room.accessible) %>
+  </div>
+  <div>
+    <%= f.submit 'Salvar' %>
+  </div>
+<% end %>

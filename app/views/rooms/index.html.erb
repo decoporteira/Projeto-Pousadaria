@@ -1,0 +1,23 @@
+<h1>Seus Quartos</h1>
+<%= link_to 'Cadastrar novo quarto', new_room_path %>
+<% if @rooms.nil? %>
+  <p>Não quarto cadastrado.</p>
+<% else %>
+  <section id="room">
+    <% @rooms.each do |room| %>
+      <div>
+        <dl>
+          <dt>Nome:</dt>
+          <dd><%= room.name %></dd>
+          <dt>Descrição:</dt>
+          <dd><%= room.description %></dd>
+          <dt>Diária:</dt>
+          <dd><%= room.daily_rate %></dd>
+        </dl>
+        <%= link_to 'Detalhes', room_path(room)%>
+        <br>
+        <br>
+      </div>
+    <% end %>
+  <% end%>
+</section>

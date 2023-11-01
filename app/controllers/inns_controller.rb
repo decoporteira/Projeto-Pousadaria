@@ -1,7 +1,7 @@
 class InnsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_inn, only: [:show, :edit, :update] 
-    before_action :can_edit_only_self, only: [:edit, :update, :destroy]
+    before_action :can_edit, only: [:edit, :update, :destroy]
 
  
     def new
@@ -23,8 +23,7 @@ class InnsController < ApplicationController
         
     end
 
-    def create
-        
+    def create  
         @inn = Inn.new(inn_params)
         @inn.user = current_user
         if @inn.save()
@@ -39,22 +38,21 @@ class InnsController < ApplicationController
         if @inn.save()
            redirect_to inn_path(@inn), notice: 'Pousada alterada com sucesso.'
         else  
-            flash.now[:notice] = "Pousada não cadastrada."
+            flash.now[:notice] = "Pousada não alterada."
             render :new, status: 422
-            # render 'new'
         end
      end
 
-     private
-   def inn_params
-      inn_params = params.require(:inn).permit(:trade_name, :company_name, :registration_number, :phone, :email, :address, :neighborhood, :city, :zip_code, :description, :payment_methods, :pet, :rules, :check_in, :check_out, :status)
-   end
+    private
+    def inn_params
+        inn_params = params.require(:inn).permit(:trade_name, :company_name, :registration_number, :phone, :email, :address, :neighborhood, :city, :zip_code, :description, :payment_methods, :pet, :rules, :check_in, :check_out, :status)
+    end
 
-   def set_inn
-      @inn = Inn.find(params[:id])
-   end
+    def set_inn
+        @inn = Inn.find(params[:id])
+    end
 
-   def can_edit_only_self
-     redirect_to root_path unless @inn.user_id == current_user.id
-   end
+    def can_edit
+        redirect_to root_path unless @inn.user_id == current_user.id
+    end
 end

@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  size: 1
+  guest: MyString
+  daily_rate: 9.99
+  balcony: 1
+  air_conditioner: 1
+  tv: 1
+  wardrobe: 1
+  safe: 1
+  accessible: 1
+  available: 1
+
+two:
+  name: MyString
+  description: MyString
+  size: 1
+  guest: MyString
+  daily_rate: 9.99
+  balcony: 1
+  air_conditioner: 1
+  tv: 1
+  wardrobe: 1
+  safe: 1
+  accessible: 1
+  available: 1

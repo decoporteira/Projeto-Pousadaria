@@ -15,6 +15,7 @@
         <% if user_signed_in? %>
           <%= link_to 'Cadastrar pousada', new_inn_path, class:'px-3'%>
           <%= link_to 'Pousada', inns_path, class:'px-3' %>
+          <%= link_to 'Quartos', rooms_path, class:'px-3'%>
           <%= link_to 'Seus dados', edit_user_registration_path, class:'px-3'%>
           olá <%= current_user.name%>
           <%= current_user.email%>

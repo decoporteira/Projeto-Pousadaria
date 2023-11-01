@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
     root to: "home#index"
     resources :inns, only: [:new, :create, :index, :show, :edit, :update]
+    resources :rooms, only: [:new, :create, :index, :show, :edit, :update] 
  
 end
