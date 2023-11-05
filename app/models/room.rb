@@ -1,5 +1,6 @@
 class Room < ApplicationRecord
     belongs_to :inn
+    has_many :prices, dependent: :destroy
 
     enum balcony: [:possui, :'não possui']
     enum available: [:sim, :não]

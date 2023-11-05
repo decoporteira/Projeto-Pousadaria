@@ -19,11 +19,8 @@ describe 'Usuário visita página de quartos e acessa página de edição de pre
         fill_in 'Final', with: '2023-02-06'
         click_on 'Salvar'
 
-
         expect(page).to have_content('Novo preço: R$ 250,00')
         expect(page).to have_content('Datas: Entre: 02/02/2023 até 06/02/2023')
-
-
         
     end
 end

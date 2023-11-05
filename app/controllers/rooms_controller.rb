@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
-    before_action :set_room, only: [:show, :edit, :update] 
+    before_action :set_room, only: [:show, :edit, :update, :destroy] 
     before_action :authenticate_user!
-    before_action :can_edit, only: [:edit, :update, :destroy]
+    before_action :can_edit, only: [:edit, :update]
 
     def index
         @inn = Inn.find_by(user_id: current_user.id )
@@ -36,10 +36,17 @@ class RoomsController < ApplicationController
         if @room.save()
            redirect_to room_path(@room), notice: 'Quarto alterado com sucesso.'
         else  
-            flash.now[:notice] = "Qaurto não alterado."
+            flash.now[:notice] = "Quarto não alterado."
             render :new, status: 422
         end
      end
+
+     def destroy
+        
+        @room.destroy()
+        redirect_to rooms_path, notice: 'Quarto removido com sucesso.'
+    end
+    
 
     private
     def room_params

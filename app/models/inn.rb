@@ -1,6 +1,6 @@
 class Inn < ApplicationRecord
   belongs_to :user
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
 
   enum pet: [:permitidos, :'não permitidos']
   enum status: [:ativa, :desativada]

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
     root to: "home#index"
     resources :inns, only: [:new, :create, :index, :show, :edit, :update]
-    resources :rooms, only: [:new, :create, :index, :show, :edit, :update] 
-    resources :prices, only: [:index, :new, :create, :edit, :update] 
+    resources :rooms, only: [:new, :create, :index, :show, :edit, :update, :destroy] 
+    resources :prices, only: [:new, :create, :edit, :update] 
  
 end

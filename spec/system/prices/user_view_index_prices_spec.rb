@@ -9,7 +9,9 @@ describe 'Usuário visita página de inicial de preços' do
 
         visit(root_path)
         login(user)
-        click_on 'Preços'
+        click_on 'Quartos'
+        click_on 'Detalhes'
+        
 
         expect(page).to have_content('Preços por período')
     end
@@ -24,7 +26,8 @@ describe 'Usuário visita página de inicial de preços' do
         # cadastrar preços
         visit(root_path)
         login(user)
-        click_on 'Preços'
+        click_on 'Quartos'
+        click_on 'Detalhes'
 
         expect(page).to have_content('Preços por período')
         expect(page).to have_content('23')
