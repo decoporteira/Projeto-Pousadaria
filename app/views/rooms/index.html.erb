@@ -1,7 +1,7 @@
 <h1>Seus Quartos</h1>
 <%= link_to 'Cadastrar novo quarto', new_room_path %>
-<% if @rooms.nil? %>
-  <p>Não quarto cadastrado.</p>
+<% if @rooms.empty? %>
+  <p>Não existem quartos cadastrados.</p>
 <% else %>
   <section id="room">
     <% @rooms.each do |room| %>

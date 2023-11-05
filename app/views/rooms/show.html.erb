@@ -47,7 +47,7 @@
         <% end %>
       <% end %>
       <%= link_to 'Editar', edit_room_path %>
-      <%= link_to 'Cadastrar novos preços', new_price_path(@room.id)%>
+      <%= link_to 'Cadastrar novo preço', new_price_path(@room.id)%>
       <%= button_to 'Apagar', @room, method: :delete, class:'btn btn-outline-danger mt-3' %>
     </div>
   <% end%>

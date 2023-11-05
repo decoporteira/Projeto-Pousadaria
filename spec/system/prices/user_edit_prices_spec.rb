@@ -13,7 +13,7 @@ describe 'Usuário visita página de quartos e acessa página de edição de pre
         login(user)
         click_on 'Quartos'
         click_on 'Detalhes'
-        click_on 'Editar preço'
+        click_on 'Cadastrar novo preço'
         fill_in 'Nova diária', with: '250'
         fill_in 'Início', with: '2023-02-02'
         fill_in 'Final', with: '2023-02-06'

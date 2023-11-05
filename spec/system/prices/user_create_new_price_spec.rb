@@ -12,9 +12,9 @@ describe 'Usuário visita página de inicial de preços' do
         login(user)
         click_on 'Quartos'
         click_on 'Detalhes'  
-        click_on 'Cadastrar novos preços'
+        click_on 'Cadastrar novo preço'
         
-        expect(page).to have_content('Cadastrar novos preços')
+        expect(page).to have_content('Cadastrar novo preço')
         expect(page).to have_content('Início')
         expect(page).to have_content('Final')
 
@@ -32,7 +32,7 @@ describe 'Usuário visita página de inicial de preços' do
         click_on 'Quartos'
         click_on 'Quartos'
         click_on 'Detalhes'  
-        click_on 'Cadastrar novos preços'
+        click_on 'Cadastrar novo preço'
         fill_in 'Nova diária', with: 23
         fill_in 'Início', with: '2023-12-23'
         fill_in 'Final', with: '2023-12-24'

@@ -1,1 +1,16 @@
 <h1>Pousadaria</h1>
+<% if user_signed_in? %>
+  "logado"
+<% else %>
+  <% @inns.each do |inn|%>
+    <dl>
+      <dt>Nome: </dt>
+      <dd><%= inn.trade_name%></dd>
+      <dt>Descrição: </dt>
+      <dd><%= inn.description%></dd>
+      <dt>Cidade: </dt>
+      <dd><%= inn.city%></dd>
+    </dl>
+    <p>-----------------------</p>
+  <% end %>
+<% end %>

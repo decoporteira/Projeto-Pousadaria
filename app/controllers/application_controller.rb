@@ -29,7 +29,11 @@ class ApplicationController < ActionController::Base
           flash[:notice] = "Você não tem uma pousada cadastrada. Por favor, complete seu cadastro."
           redirect_to new_inn_path
         end
+      else
+        @inns = Inn.where(status: "ativa")
       end
+    
+
       
      
     end
