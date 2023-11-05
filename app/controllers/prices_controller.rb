@@ -1,4 +1,5 @@
 class PricesController < ApplicationController
+    before_action :set_price, only: [:show, :edit, :update] 
     def index
         @prices = Price.all
     end
@@ -8,9 +9,11 @@ class PricesController < ApplicationController
         @room_id = params[:format].to_i
     end
 
+    def edit
+       @room_id = @price.room_id
+    end
+
     def create
-        
-        # p @room = Room.find(price_params[:room_id].to_i)
         @price = Price.new(price_params)
         if @price.save()
            redirect_to rooms_path, notice: "Novo preço cadastrado com sucesso."
@@ -20,9 +23,29 @@ class PricesController < ApplicationController
         end
     end
 
+    def update
+       
+        old_price = Price.find(@price.id)
+        @price.update(price_params)
+        @price.room_id = old_price.room_id
+        
+       
+        if @price.save()
+           redirect_to room_path(@price.room_id), notice: 'Preço alterado com sucesso.'
+        else  
+            flash.now[:notice] = "Preço não alterado."
+            render :new, status: 422
+        end
+     end
+
     private
     def price_params
         price_params = params.require(:price).permit(:new_rate, :start_date, :final_date, :room_id)
     end
+    
+    def set_price
+        @price = Price.find(params[:id])
+    end
+
 
 end

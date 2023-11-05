@@ -38,7 +38,7 @@ describe 'Usuário visita tela de edição do quarto' do
         
         expect(page).to have_content('Nome: Quarto do Luigi')
         expect(page).to have_content('Descrição: Quarto do Reino dos Cogumelos')
-        expect(page).to have_content('Diária: 50')
+        expect(page).to have_content('Diária: R$ 50,00')
     end
     
 end

@@ -42,7 +42,7 @@ describe 'Usuário entra página de criação do quarto' do
         expect(page).to have_content('Quarto cadastrado com sucesso')
         expect(page).to have_content('Nome: Quarto Pokémon')
         expect(page).to have_content('Descrição: Quarto idéntico ao quarto de Ash.')
-        expect(page).to have_content('Diária: 20.0')
+        expect(page).to have_content('Diária: R$ 20,00')
         # expect(page).to have_content('Hóspedes: 2')
         # expect(page).to have_content('Tamanho: 20')
         # expect(page).to have_content('Varanda: possui')

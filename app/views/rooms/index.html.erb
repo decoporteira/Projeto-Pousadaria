@@ -12,7 +12,7 @@
           <dt>Descrição:</dt>
           <dd><%= room.description %></dd>
           <dt>Diária:</dt>
-          <dd><%= room.daily_rate %></dd>
+          <dd><%= number_to_currency(room.daily_rate, locale: :'pt-BR') %></dd>
         </dl>
         <%= link_to 'Detalhes', room_path(room)%>
         <br>

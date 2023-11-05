@@ -17,7 +17,7 @@ describe 'Usuário visita tela inicial de Quartos' do
         expect(page).to have_content('Descrição: Quarto idéntico ao quarto de Ash.')
         expect(page).to have_content('Tamanho: 20')
         expect(page).to have_content('Hóspedes: 2')
-        expect(page).to have_content('Diária: 20.0')
+        expect(page).to have_content('Diária: R$ 20,00')
         expect(page).to have_content('Varanda: possui')
         expect(page).to have_content('Ar condicionado: não possui ar condicionado')
         expect(page).to have_content('Tv: não possui tv')

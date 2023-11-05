@@ -15,6 +15,9 @@ class RoomsController < ApplicationController
     def edit
        
     end
+    def show
+        @prices = Price.where(room_id: @room.id)
+    end
 
     def create 
         @inn = Inn.find_by(user_id:current_user.id )
