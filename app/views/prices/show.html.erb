@@ -1,0 +1,17 @@
+<h2>Detalhes da precificação</h2>
+<section id="price">
+  <div>
+    <dl>
+      <dt>Nova diária:</dt>
+      <dd><%= @price.new_rate%></dd>
+      <dt>Início:</dt>
+      <dd><%= @price.start_date%></dd>
+      <dt>Final:</dt>
+      <dd> <%= @price.final_date%></dd>
+    </dl>
+  </div>
+</section>
+<%= link_to 'Editar', edit_price_path %>
+<%= button_to 'Apagar', @price, method: :delete, class:'btn btn-outline-danger mt-3' %>
+</div>
+</section>

@@ -34,15 +34,14 @@ class RoomsController < ApplicationController
     def update
         @room.update(room_params)
         if @room.save()
-           redirect_to room_path(@room), notice: 'Quarto alterado com sucesso.'
+            redirect_to room_path(@room), notice: 'Quarto alterado com sucesso.'
         else  
             flash.now[:notice] = "Quarto não alterado."
             render :new, status: 422
         end
-     end
+    end
 
-     def destroy
-        
+    def destroy  
         @room.destroy()
         redirect_to rooms_path, notice: 'Quarto removido com sucesso.'
     end
