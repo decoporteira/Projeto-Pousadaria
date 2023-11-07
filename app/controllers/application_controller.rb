@@ -29,9 +29,14 @@ class ApplicationController < ActionController::Base
           redirect_to new_inn_path
         end
       else
-        @active_inns = Inn.where(status: "ativa")
-        @recent_inns =  @active_inns.last(3)
-        @active_inns = @active_inns - @recent_inns
+        @all_active_inns = Inn.where(status: "ativa")
+        @recent_inns =  @all_active_inns.last(3)
+        @active_inns = @all_active_inns - @recent_inns
+        cities = []
+        @all_active_inns.each do |item|
+           cities << item.city
+        end
+        @novas_cities = cities.uniq
       end
 
     end

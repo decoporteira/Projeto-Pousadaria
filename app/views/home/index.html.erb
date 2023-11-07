@@ -1,34 +1,53 @@
 <h1>Pousadaria</h1>
-<% if user_signed_in? %>
-  "logado"
-<% else %>
-  <div id='new_inns'>
-    <h2>Pousadas Recentes</h2>
-    <p>-----------------------</p>
-    <% @recent_inns.each do |inn|%>
-      <dl>
-        <dt>Nome: </dt>
-        <%= link_to(inn) do %>
-          <dd><%= inn.trade_name%></dd>
-        <% end %>
-        <dt>Cidade: </dt>
-        <dd><%= inn.city%></dd>
-      </dl>
-      <p>-----------------------</p>
-    <% end %>
+<div class="container py-4">
+  <div class="row align-items-md-stretch">
+    <div class="col-md-9">
+      <div class="h-100 p-2 text-bg-ligth rounded-3">
+        <% if user_signed_in? %>
+          "logado"
+        <% else %>
+          <div id='new_inns'>
+            <h2>Pousadas Recentes</h2>
+            <p>-----------------------</p>
+            <% @recent_inns.each do |inn|%>
+              <dl>
+                <dt>Nome: </dt>
+                <%= link_to(inn) do %>
+                  <dd><%= inn.trade_name%></dd>
+                <% end %>
+                <dt>Cidade: </dt>
+                <dd><%= inn.city%></dd>
+              </dl>
+              <p>-----------------------</p>
+            <% end %>
+          </div>
+          <h2>Todas nossas Pousadas</h2>
+          <div id='all_inns'>
+            <% @active_inns.each do |inn|%>
+              <dl>
+                <dt>Nome: </dt>
+                <%= link_to(inn) do %>
+                  <dd><%= inn.trade_name%></dd>
+                <% end %>
+                <dt>Cidade: </dt>
+                <dd><%= inn.city%></dd>
+              </dl>
+              <p>-----------------------</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="h-auto p-5 bg-body-tertiary border rounded-3" id='cities'>
+          <h2>Busque por cidade:</h2>
+          <%#= @novas_cities.each do |city| %>
+            <%#= city%>
+            <%# end %>
+            <% @novas_cities.each do |city| %>
+              <%= link_to city, cities_inns_path(city: city), class:"btn btn-outline-secondary" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <h2>Todas nossas Pousadas</h2>
-  <div id='all_inns'>
-    <% @active_inns.each do |inn|%>
-      <dl>
-        <dt>Nome: </dt>
-        <%= link_to(inn) do %>
-          <dd><%= inn.trade_name%></dd>
-        <% end %>
-        <dt>Cidade: </dt>
-        <dd><%= inn.city%></dd>
-      </dl>
-      <p>-----------------------</p>
-    <% end %>
-  </div>
-<% end %>

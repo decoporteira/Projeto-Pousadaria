@@ -1,0 +1,9 @@
+<h1>Pousadas em <%=params[:city] %></h1>
+<div>
+  <%@active_inns_by_city.each do |inn|%>
+    <dl>
+      <dt>Nome: </dt>
+      <dd><%= inn %></dd>
+    <% end %>
+  </dl>
+</div>

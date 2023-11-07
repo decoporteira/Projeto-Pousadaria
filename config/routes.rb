@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
 
     root to: "home#index"
-    resources :inns, only: [:new, :create, :index, :show, :edit, :update]
+    resources :inns, only: [:new, :create, :index, :show, :edit, :update] do 
+      get 'cities', on: :collection
+    end
     resources :rooms, only: [:new, :create, :index, :show, :edit, :update, :destroy] 
     resources :prices, only: [:new, :create, :show, :edit, :update, :destroy] 
  

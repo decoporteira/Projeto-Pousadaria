@@ -43,7 +43,21 @@ class InnsController < ApplicationController
         end
      end
 
+    
+
+    
+
+    def cities
+        @active_inns_by_city = Inn.where(status: "ativa", city: params[:city])
+        names = []
+        @active_inns_by_city.each do |name| 
+            names << name.trade_name
+        end
+        p @active_inns_by_city = names.sort
+    end
+
     private
+
     def inn_params
         inn_params = params.require(:inn).permit(:trade_name, :company_name, :registration_number, :phone, :email, :address, :neighborhood, :city, :zip_code, :description, :payment_methods, :pet, :rules, :check_in, :check_out, :status)
     end
