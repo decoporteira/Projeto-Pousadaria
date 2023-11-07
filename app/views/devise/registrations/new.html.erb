@@ -24,6 +24,7 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+  <%= f.hidden_field :role, value: 1 %>
   <div class="actions">
     <%= f.submit "Criar conta" %>
   </div>

@@ -2,15 +2,33 @@
 <% if user_signed_in? %>
   "logado"
 <% else %>
-  <% @inns.each do |inn|%>
-    <dl>
-      <dt>Nome: </dt>
-      <dd><%= inn.trade_name%></dd>
-      <dt>Descrição: </dt>
-      <dd><%= inn.description%></dd>
-      <dt>Cidade: </dt>
-      <dd><%= inn.city%></dd>
-    </dl>
+  <div id='new_inns'>
+    <h2>Pousadas Recentes</h2>
     <p>-----------------------</p>
-  <% end %>
+    <% @recent_inns.each do |inn|%>
+      <dl>
+        <dt>Nome: </dt>
+        <%= link_to(inn) do %>
+          <dd><%= inn.trade_name%></dd>
+        <% end %>
+        <dt>Cidade: </dt>
+        <dd><%= inn.city%></dd>
+      </dl>
+      <p>-----------------------</p>
+    <% end %>
+  </div>
+  <h2>Todas nossas Pousadas</h2>
+  <div id='all_inns'>
+    <% @active_inns.each do |inn|%>
+      <dl>
+        <dt>Nome: </dt>
+        <%= link_to(inn) do %>
+          <dd><%= inn.trade_name%></dd>
+        <% end %>
+        <dt>Cidade: </dt>
+        <dd><%= inn.city%></dd>
+      </dl>
+      <p>-----------------------</p>
+    <% end %>
+  </div>
 <% end %>

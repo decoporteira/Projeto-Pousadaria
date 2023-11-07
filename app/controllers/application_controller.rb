@@ -23,19 +23,17 @@ class ApplicationController < ActionController::Base
     private 
     def check_user_inn
       if user_signed_in?
-
         @inn = Inn.find_by(user_id: current_user.id)
         if @inn.nil?
           flash[:notice] = "Você não tem uma pousada cadastrada. Por favor, complete seu cadastro."
           redirect_to new_inn_path
         end
       else
-        @inns = Inn.where(status: "ativa")
+        @active_inns = Inn.where(status: "ativa")
+        @recent_inns =  @active_inns.last(3)
+        @active_inns = @active_inns - @recent_inns
       end
-    
 
-      
-     
     end
 
 end

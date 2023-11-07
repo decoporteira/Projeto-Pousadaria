@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário visita tela de detalhes de Pousada' do
     it 'a partir do menu na index' do
-        user = User.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
+        user = User.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
         visit(root_path)
         login(user)
         Inn.create!(trade_name: 'Pousada de Teste', company_name: 'Pousada de Teste LTDA', registration_number: '5454354355435', phone: '23243423432', email: 'pousada@amores.com', address: 'Rua das Covas, 123', 

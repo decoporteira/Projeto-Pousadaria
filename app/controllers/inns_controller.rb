@@ -1,5 +1,5 @@
 class InnsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:edit]
     before_action :set_inn, only: [:show, :edit, :update] 
     before_action :cant_edit, only: [:edit, :update, :destroy]
 
@@ -54,7 +54,6 @@ class InnsController < ApplicationController
 
     def cant_edit
         current_user.id
-        
         redirect_to root_path unless @inn.user_id == current_user.id
     end
 end

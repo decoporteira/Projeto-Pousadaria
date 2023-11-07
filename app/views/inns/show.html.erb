@@ -8,10 +8,12 @@
       <dl>
         <dt>Nome Fantasia:</dt>
         <dd><%= @inn.trade_name %></dd>
-        <dt>Razão Social:</dt>
-        <dd><%= @inn.company_name %></dd>
-        <dt>CNPJ:</dt>
-        <dd><%= @inn.registration_number %></dd>
+        <% if (current_user.present? && current_user.owner?) %>
+          <dt>Razão Social:</dt>
+          <dd><%= @inn.company_name %></dd>
+          <dt>CNPJ:</dt>
+          <dd><%= @inn.registration_number %></dd>
+        <% end %>
         <dt>Telefone:</dt>
         <dd><%= @inn.phone %></dd>
         <dt>Email:</dt>
