@@ -25,7 +25,7 @@ describe 'Usuário visita tela de detalhes de Pousada' do
         expect(page).to have_content('Cidade: Juiz de Fora')
         expect(page).to have_content('CEP: 389434-923')
         expect(page).to have_content('Descrição: A melhor Pousada do mundo.')
-        expect(page).to have_content('Formas de pagamento: Apenas PIX')
+        expect(page).to have_content('Formas de Pagamento: Apenas PIX')
         expect(page).to have_content('Animais: permitidos')
         expect(page).to have_content('Regras: Não pode ouvir música alta.')
         expect(page).to have_content('Entrada: 12:00')

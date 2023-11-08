@@ -15,7 +15,7 @@ describe 'Usuário cria conta' do
         fill_in 'E-mail', with: 'andre@pousadaria.com'
         fill_in 'Senha', with: 'password'
         fill_in 'Confirme sua senha', with: 'password'
-        within('form') do
+        within('.new_user') do
             click_on 'Criar conta'
         end
         
@@ -43,7 +43,7 @@ describe 'Usuário cria conta' do
         fill_in 'E-mail', with: ''
         fill_in 'Senha', with: 'password'
         fill_in 'Confirme sua senha', with: 'password'
-        within('form') do
+        within('.new_user') do
             click_on 'Criar conta'
         end
         
@@ -66,7 +66,7 @@ describe 'Usuário cria conta' do
         fill_in 'E-mail', with: ''
         fill_in 'Senha', with: 'password'
         fill_in 'Confirme sua senha', with: 'password'
-        within('form') do
+        within('.new_user') do
             click_on 'Criar conta'
         end
         

@@ -52,8 +52,33 @@ class InnsController < ApplicationController
         @active_inns_by_city = @active_inns_by_city.sort_by { |element| element[:trade_name] }
     end
 
+    def search
+        @query = params['query']
+        @inns = Inn.where("trade_name LIKE ? OR neighborhood LIKE ? OR city LIKE ? ", "%#{@query}%", "%#{@query}%", "%#{@query}%")
+    end
+
+    def advanced_search
+        @inns = Inn.all
+    end
+
+    
+    def advanced_search_results
+        p params[:pet]
+        p params['query']
+        p params['pet']
+        #@inns = Inn.where("trade_name LIKE ? OR neighborhood LIKE ? OR city LIKE ? AND pet = ? ", "%#{params['query']}%", "%#{params['query']}%", "%#{params['query']}%","%#{params['pet']}%" )
+        #@inns = Inn.where(pet: 'não permitidos' )
+        @inns = Inn.where("neighborhood LIKE ? AND pet = ? ", "%#{params['query']}%", "0" )
+        # @inns = Inn.where("neighborhood LIKE ?", "%#{params['query']}%")
+        # @inns = Inn.where(pet: params[:pet])
+
+        p @inns .count
+        #redirect_to search_inns_path
+    end
+
     private
 
+    
     def inn_params
         inn_params = params.require(:inn).permit(:trade_name, :company_name, :registration_number, :phone, :email, :address, :neighborhood, :city, :zip_code, :description, :payment_methods, :pet, :rules, :check_in, :check_out, :status)
     end

@@ -76,7 +76,7 @@ describe 'Usuário visita tela inicial de Pousada sem estar logado' do
         expect(page).to have_content('Cidade: Rio de Janeiro')
         expect(page).to have_content('CEP: 59434-923')
         expect(page).to have_content('Descrição: Uma pousada de outro mundo.')
-        expect(page).to have_content('Formas de pagamento: Apenas PIX')
+        expect(page).to have_content('Formas de Pagamento: Apenas PIX')
         expect(page).to have_content('Animais: permitidos')
         expect(page).to have_content('Regras: Não pode falar de Pokémon.')
         expect(page).to have_content('Entrada: 12:00')

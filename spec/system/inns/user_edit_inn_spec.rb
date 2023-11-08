@@ -30,7 +30,7 @@ describe 'Usuário visita tela de edição da Pousada' do
         click_on 'Pousada'
         click_on 'Detalhes'
         click_on 'Editar detalhes'
-        fill_in 'Nome fantasia', with: 'Pousada dos Amores'
+        fill_in 'Nome Fantasia', with: 'Pousada dos Amores'
         click_on 'Salvar'
        
         expect(page).to have_content('Nome Fantasia: Pousada dos Amores')

@@ -1,0 +1,15 @@
+<h1>Busca avançada</h1>
+<div id='advanced_search'>
+  <%= form_with url: advanced_search_results_inns_path, method: :get do |f| %>
+    <%=f.label :query, 'Buscar avançadamente:'%>
+    <%=f.text_field :query %>
+    <div>
+      <%= f.label :pet, 'Animais:' %>
+      <%#= f.select :pet, options_for_select(Inn.pets.map {|key, value| [key.titleize, Inn.pets.key(value)]}) %>
+
+     <%= f.select :pet, options_for_select(Inn.pets.keys.map { |pet| [pet.titleize, Inn.pets[pet]] }) %>
+
+    </div>
+    <%=f.submit 'Buscar'%>
+  <% end %>
+</div>

@@ -6,41 +6,39 @@
   <section id="inn">
     <div>
       <dl>
-        <dt>Nome Fantasia:</dt>
+        <dt><%= Inn.human_attribute_name(:trade_name)%>:</dt>
         <dd><%= @inn.trade_name %></dd>
         <% if (current_user.present? && current_user.owner?) %>
-          <dt>Razão Social:</dt>
+          <dt><%= Inn.human_attribute_name(:company_name)%>:</dt>
           <dd><%= @inn.company_name %></dd>
           <dt>CNPJ:</dt>
           <dd><%= @inn.registration_number %></dd>
         <% end %>
-        <dt>Telefone:</dt>
-        <dd><%= @inn.phone %></dd>
-        <dt>Email:</dt>
+        <dt><%= Inn.human_attribute_name(:email)%>:</dt>
         <dd><%= @inn.email %></dd>
-        <dt>Endereço: </dt>
+        <dt><%= Inn.human_attribute_name(:address)%>:</dt>
         <dd><%= @inn.address %></dd>
-        <dt>Bairro: </dt>
+        <dt><%= Inn.human_attribute_name(:neighborhood)%>:</dt>
         <dd><%= @inn.neighborhood %></dd>
-        <dt>Cidade:</dt>
+        <dt><%= Inn.human_attribute_name(:city)%>:</dt>
         <dd><%= @inn.city %></dd>
-        <dt>Telefone:</dt>
+        <dt><%= Inn.human_attribute_name(:phone)%>:</dt>
         <dd><%= @inn.phone %></dd>
-        <dt>CEP:</dt>
+        <dt><%= Inn.human_attribute_name(:zip_code)%>:</dt>
         <dd><%= @inn.zip_code %></dd>
-        <dt>Descrição:</dt>
+        <dt><%= Inn.human_attribute_name(:description)%>:</dt>
         <dd><%= @inn.description %></dd>
-        <dt>Formas de pagamento:</dt>
+        <dt><%= Inn.human_attribute_name(:payment_methods)%>:</dt>
         <dd><%= @inn.payment_methods %></dd>
-        <dt>Animais:</dt>
+        <dt><%= Inn.human_attribute_name(:pet)%>:</dt>
         <dd><%= @inn.pet %></dd>
-        <dt>Regras:</dt>
+        <dt><%= Inn.human_attribute_name(:rules)%>:</dt>
         <dd><%= @inn.rules %></dd>
-        <dt>Entrada:</dt>
+        <dt><%= Inn.human_attribute_name(:check_in)%>:</dt>
         <dd><%= @inn.check_in.strftime('%H:%M') %></dd>
-        <dt>Saída:</dt>
+        <dt><%= Inn.human_attribute_name(:check_out)%>:</dt>
         <dd><%= @inn.check_out.strftime('%H:%M') %></dd>
-        <dt>Status:</dt>
+        <dt><%= Inn.human_attribute_name(:status)%>:</dt>
         <dd><%= @inn.status %></dd>
       </dl>
     </div>

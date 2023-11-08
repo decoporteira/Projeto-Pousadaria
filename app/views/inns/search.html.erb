@@ -1,0 +1,16 @@
+<% if @inns.nil? %>
+  <p>Não existe Pousada cadastrada.</p>
+<% else %>
+  <h1>
+    <p><%= @inns.count %> <%= Inn.model_name.human(count: @inns.count) %> <%=I18n.translate(:found, count: @inns.count)%>.</p>
+  </h1>
+  <div>
+    <dl>
+      <%@inns.each do |inn|%>
+        <dt><%= Inn.human_attribute_name(:trade_name)%>:</dt>
+        <dd><%= link_to inn.trade_name, inn %></dd>
+      <% end %>
+    </dl>
+  </div>
+<% end %>
+<%= link_to 'Busca avançada', advanced_search_inns_path %>
