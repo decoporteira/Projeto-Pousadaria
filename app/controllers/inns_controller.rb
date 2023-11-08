@@ -63,17 +63,7 @@ class InnsController < ApplicationController
 
     
     def advanced_search_results
-        p params[:pet]
-        p params['query']
-        p params['pet']
-        #@inns = Inn.where("trade_name LIKE ? OR neighborhood LIKE ? OR city LIKE ? AND pet = ? ", "%#{params['query']}%", "%#{params['query']}%", "%#{params['query']}%","%#{params['pet']}%" )
-        #@inns = Inn.where(pet: 'não permitidos' )
-        @inns = Inn.where("neighborhood LIKE ? AND pet = ? ", "%#{params['query']}%", "0" )
-        # @inns = Inn.where("neighborhood LIKE ?", "%#{params['query']}%")
-        # @inns = Inn.where(pet: params[:pet])
-
-        p @inns .count
-        #redirect_to search_inns_path
+        @inns = Inn.where("pet = ? AND (trade_name LIKE ? OR neighborhood LIKE ? OR city LIKE ?) ", params['pet'], "%#{params['query']}%", "%#{params['query']}%", "%#{params['query']}%")
     end
 
     private
