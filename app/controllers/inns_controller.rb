@@ -43,17 +43,13 @@ class InnsController < ApplicationController
         end
      end
 
-    
-
-    
-
     def cities
         @active_inns_by_city = Inn.where(status: "ativa", city: params[:city])
         names = []
         @active_inns_by_city.each do |name| 
             names << name.trade_name
         end
-        p @active_inns_by_city = names.sort
+        @active_inns_by_city = @active_inns_by_city.sort_by { |element| element[:trade_name] }
     end
 
     private

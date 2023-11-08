@@ -3,7 +3,9 @@
   <%@active_inns_by_city.each do |inn|%>
     <dl>
       <dt>Nome: </dt>
-      <dd><%= inn %></dd>
+      <%= link_to(inn) do %>
+        <dd><%= inn.trade_name%></dd>
+      <% end %>
     <% end %>
   </dl>
 </div>
