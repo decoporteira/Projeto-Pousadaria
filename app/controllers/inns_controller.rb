@@ -16,7 +16,7 @@ class InnsController < ApplicationController
         # end
     end
     def show
-      
+        #p Price.where(start_date: start_date..final_date, room_id: self.room_id).count > 0
     end
 
     def edit

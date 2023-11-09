@@ -43,5 +43,42 @@
       </dl>
     </div>
     <%= link_to 'Editar detalhes', edit_inn_path(@inn)%>
+    <p>---------------------------------------</p>
+    <h2>Quartos disponíveis</h2>
+    <% @inn.rooms.each do |room| %>
+      <dl>
+        <dt>Nome:</dt>
+        <dd><%= room.name %></dd>
+        <dt>Descrição:</dt>
+        <dd><%= room.description %></dd>
+        <dt>Tamanho:</dt>
+        <dd><%= room.size %></dd>
+        <dt>Hóspedes:</dt>
+        <dd><%= room.guest %></dd>
+        <dt>Diária:</dt>
+        <%room.prices.each do |price|%>
+          <% dates = Price.where(start_date: price.start_date..price.final_date, room_id: room.id)%>
+          <% dates.each do |date| %>
+            <% deco = Range.new(date.start_date, date.final_date) %>
+            <%= deco.include?(Date.today)%>
+          <% end %>
+        <% end %>
+        <dd><%= number_to_currency(room.daily_rate, locale: :'pt-BR') %></dd>
+        <dt>Varanda: </dt>
+        <dd><%= room.balcony %></dd>
+        <dt>Tv:</dt>
+        <dd><%= room.tv %></dd>
+        <dt>Guarda-roupas:</dt>
+        <dd><%= room.wardrobe %></dd>
+        <dt>Cofre:</dt>
+        <dd><%= room.safe %></dd>
+        <dt>Acessibilidade:</dt>
+        <dd><%= room.accessible %></dd>
+        <dt>Ar condicionado: </dt>
+        <dd><%= room.air_conditioner %></dd>
+        <dt>Disponibilidade:</dt>
+        <dd><%= room.available %></dd>
+      </dl>
+    <% end%>
   <% end%>
 </section>
