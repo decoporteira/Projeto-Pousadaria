@@ -1,3 +1,4 @@
+require 'rails_helper'
 describe 'Usuário visita tenta visitar tela de quarto que não é dele' do
     it 'e é redirecionado para a home' do
         user_one = User.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
