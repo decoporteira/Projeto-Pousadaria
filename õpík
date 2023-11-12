@@ -1,0 +1,125 @@
+[33mcommit 6344450a503a5b048e7897b87c993ea8114e7c37[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Fri Nov 10 16:15:06 2023 -0300
+
+    Criando show Inn com rooms
+
+[33mcommit f177255cef4f69f065aa3ac17edbf1993d3e09bf[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Thu Nov 9 18:44:53 2023 -0300
+
+    Ver quartos - em construção
+
+[33mcommit e75c724b332db0709cc82bd07c8f5238775134b2[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Wed Nov 8 18:44:23 2023 -0300
+
+    Criando lógica do desafio extra - Busca por pousadas
+
+[33mcommit 63a6014039ffa6a92e42a638a4114e9204af062b[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Wed Nov 8 18:10:36 2023 -0300
+
+    Busca de Pousadas - sem desafio extra
+
+[33mcommit e70593cd13647e48c52ca42bf9b11385900b7dcf[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Wed Nov 8 14:10:32 2023 -0300
+
+    Pousadas por cidade
+
+[33mcommit 4e5cc0525d3acb79698072c73d250d7b503be498[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Tue Nov 7 17:01:18 2023 -0300
+
+    Listagem de pousadas por cidade
+
+[33mcommit 8081660c4f8f0bf4f034f7cf21fd49dcd36ba5ac[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Tue Nov 7 15:15:15 2023 -0300
+
+    Listagem de Pousadas
+
+[33mcommit be23dad48c3d357f539ab80c0503f90a10f215d7[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Mon Nov 6 17:37:17 2023 -0300
+
+    Validação das datas
+
+[33mcommit da1279d9943dc6e36e699ede9a51c788c8f40f75[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Sun Nov 5 19:19:55 2023 -0300
+
+    Mostrar Pousadas na index, quando o usuário não está logado.
+
+[33mcommit 4e63921c8eefab6517d29ee9a4495a6dd235731d[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Sun Nov 5 17:58:27 2023 -0300
+
+    Consertando redirecionamentos quando cria preços
+
+[33mcommit 034a9938f95b255d6573e86e029b5da15e19eb37[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Sun Nov 5 17:40:39 2023 -0300
+
+    Tirando index e link no menu de preços e acertando os testes
+
+[33mcommit 5e7a84ada3641535d774ea1695b1bb1c51728bbe[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Sun Nov 5 16:21:26 2023 -0300
+
+    Editando os preços
+
+[33mcommit aa2043260e3d627c2fc30f7c3ef77e9e851d67ad[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Wed Nov 1 18:23:57 2023 -0300
+
+    começando a validação da data
+
+[33mcommit c1389dee3cece753f09c958c1d036d90e128efe2[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Wed Nov 1 17:13:14 2023 -0300
+
+    Teste de bloqueio de edição de Pousadas funcionando
+
+[33mcommit d89a83b5d968d26012ee8097f976306f8cee45e6[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Tue Oct 31 23:22:44 2023 -0300
+
+    Model Rooms com testes
+
+[33mcommit b8e7aeecac9be840ace49a91e259a56b5a1f840d[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Tue Oct 31 15:49:15 2023 -0300
+
+    Model Inn com desafio extra
+
+[33mcommit e93e650dbcc8fca558068dc3a76d0c36b331dc74[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Tue Oct 31 09:50:56 2023 -0300
+
+    Model Inn com testes
+
+[33mcommit 4e7d07a3eeeb77a0ca3b72451634b75b7c6d2f2f[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Mon Oct 30 21:51:32 2023 -0300
+
+    Criando testes para Model Inn
+
+[33mcommit c850758e4199924aff08264a8f8418720802ddaa[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Mon Oct 30 20:29:40 2023 -0300
+
+    User criado e testado
+
+[33mcommit 458d25fa857cae96e382b11cd7a49a2727922082[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Mon Oct 30 19:14:44 2023 -0300
+
+    Projeto criado
+
+[33mcommit ea39cb74178b376eb971b16565bab5531461fda6[m
+Author: Andre Pereira <andreporteira@gmail.com>
+Date:   Mon Oct 30 19:13:12 2023 -0300
+
+    first commit

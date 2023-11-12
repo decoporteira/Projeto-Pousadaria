@@ -10,7 +10,7 @@ describe 'Usuário vê os quartos da pousada dentro dos detalhes da pousada' do
         visit(root_path)
         
         click_on 'Pousada de Teste'
-
+      
                         
         expect(page).to have_content('Pousada de Teste')
         expect(page).to have_content('Nome: Quarto Pokémon')

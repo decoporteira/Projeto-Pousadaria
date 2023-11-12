@@ -42,9 +42,7 @@
         <dd><%= @inn.status %></dd>
       </dl>
     </div>
-    <% if current_user && current_user.owner? %>
-      <%= link_to 'Editar detalhes', edit_inn_path(@inn)%>
-    <% end %>
+    <%= link_to 'Editar detalhes', edit_inn_path(@inn)%>
     <p>---------------------------------------</p>
     <h2>Quartos disponíveis</h2>
     <% @inn.rooms.each do |room| %>
@@ -58,6 +56,21 @@
         <dt>Hóspedes:</dt>
         <dd><%= room.guest %></dd>
         <dt>Diária:</dt>
+        <% if room.prices.length == 0%>
+          <dd><%= number_to_currency(room.daily_rate, locale: :'pt-BR') %></dd>
+        <%else%>
+          <%room.prices.each do |price|%>
+            <% dates = Price.where(start_date: price.start_date..price.final_date, room_id: room.id)%>
+            <% dates.each do |date| %>
+              <% deco = Range.new(date.start_date, date.final_date) %>
+              <% if deco && deco.include?(Date.today)%>
+                <dd><%= number_to_currency(date.new_rate, locale: :'pt-BR') %></dd>
+              <% else %>
+                <dd><%= number_to_currency(room.daily_rate, locale: :'pt-BR') %></dd>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
         <dd><%= number_to_currency(room.daily_rate, locale: :'pt-BR') %></dd>
         <dt>Varanda: </dt>
         <dd><%= room.balcony %></dd>
