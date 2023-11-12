@@ -42,10 +42,15 @@
         <dd><%= @inn.status %></dd>
       </dl>
     </div>
-    <%= link_to 'Editar detalhes', edit_inn_path(@inn)%>
+    <% if (current_user.present? && current_user.owner?) %>
+      <%= link_to 'Editar detalhes', edit_inn_path(@inn)%>
+      <% rooms = @inn.rooms%>
+    <% else %>
+      <% rooms = @inn.rooms.where(available: :sim)%>
+    <% end %>
     <p>---------------------------------------</p>
     <h2>Quartos disponíveis</h2>
-    <% @inn.rooms.each do |room| %>
+    <% rooms.each do |room| %>
       <dl>
         <dt>Nome:</dt>
         <dd><%= room.name %></dd>
