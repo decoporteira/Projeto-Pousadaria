@@ -4,10 +4,13 @@ class Price < ApplicationRecord
   validate :validate_date
 
   def validate_date
-    prices = Price.where(start_date: start_date..final_date, room_id: self.room_id)
-   
-    if Price.where(start_date: start_date..final_date, room_id: self.room_id).count > 0
-      return errors.add(:start_date, " - Essa data já está em uso.")
+    current_range = (self.start_date..self.final_date)
+    ranges = Price.where(room_id: self.room_id)
+    ranges.each do |range|
+      new_range = range.start_date..range.final_date
+      if (current_range.overlaps?new_range) && (self.id != range.id)
+        return errors.add(:start_date, " - Essa data já está em uso.")
+      end
     end
   end
 end

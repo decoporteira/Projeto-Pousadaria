@@ -61,21 +61,8 @@
         <dt>Hóspedes:</dt>
         <dd><%= room.guest %></dd>
         <dt>Diária:</dt>
-        <% if room.prices.length == 0%>
-          <dd><%= number_to_currency(room.daily_rate, locale: :'pt-BR') %></dd>
-        <%else%>
-          <%room.prices.each do |price|%>
-            <% dates = Price.where(start_date: price.start_date..price.final_date, room_id: room.id)%>
-            <% dates.each do |date| %>
-              <% deco = Range.new(date.start_date, date.final_date) %>
-              <% if deco && deco.include?(Date.today)%>
-                <dd><%= number_to_currency(date.new_rate, locale: :'pt-BR') %></dd>
-              <% else %>
-                <dd><%= number_to_currency(room.daily_rate, locale: :'pt-BR') %></dd>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
+        <%= number_to_currency(current_price(room), locale: :'pt-BR') %>
+        <%#= number_to_currency(room.current_price, locale: :'pt-BR') %>
         <dt>Varanda: </dt>
         <dd><%= room.balcony %></dd>
         <dt>Tv:</dt>

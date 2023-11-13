@@ -10,7 +10,7 @@ RSpec.describe Inn, type: :model do
                                 check_in: '12:00', check_out: '14:00', status: "ativa", user_id: user.id)
                 room = Room.create!(name: 'Quarto Pokémon', description: 'Descrição: Quarto idéntico ao quarto de Ash.', size: 20, guest: 2, daily_rate: 20, balcony: 'possui', air_conditioner: 'não possui ar condicionado', available: 'sim', tv: 'não possui tv', wardrobe: 'possui guarda-roupas', safe: 'possui cofre', accessible: 'quarto sem acessibilidade', inn_id: inn.id)
                 Price.create!(new_rate: 230, start_date: '2023-02-02', final_date: '2023-02-05', room_id: room.id)  
-                price = Price.create!(new_rate: 300, start_date: '2023-02-03', final_date: '2023-02-03', room_id: room.id)
+                price = Price.create(new_rate: 300, start_date: '2023-02-03', final_date: '2023-02-03', room_id: room.id)
             
                 result = price.valid?
                 expect(result).to eq false

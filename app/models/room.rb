@@ -11,5 +11,5 @@ class Room < ApplicationRecord
     enum accessible: [:'quarto com acessibilidade', :'quarto sem acessibilidade']
     
     validates :name, :description, :guest, :size, :daily_rate, :balcony, :air_conditioner, :tv, :wardrobe, :safe, :accessible, :available,  presence: true
-
+    
 end

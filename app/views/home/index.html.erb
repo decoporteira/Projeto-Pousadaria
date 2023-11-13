@@ -40,14 +40,11 @@
       <div class="col-md-3">
         <div class="h-auto p-5 bg-body-tertiary border rounded-3" id='cities'>
           <h2>Busque por cidade:</h2>
-          <%#= @novas_cities.each do |city| %>
-            <%#= city%>
-            <%# end %>
-            <% @novas_cities.each do |city| %>
-              <%= link_to city, cities_inns_path(city: city), class:"btn btn-outline-secondary" %>
-            <% end %>
+          <% @novas_cities.each do |city| %>
+            <%= link_to city, cities_inns_path(city: city), class:"btn btn-outline-secondary" %>
           <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>

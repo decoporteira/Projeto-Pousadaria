@@ -11,17 +11,12 @@ class InnsController < ApplicationController
     def index
         current_user
         @inn = Inn.find_by(user_id: current_user.id) 
-        # if @inn.trade_name.length < 1
-        #     redirect_to root_path
-        # end
-    end
-    def show
-        #p Price.where(start_date: start_date..final_date, room_id: self.room_id).count > 0
-      
     end
 
-    def edit
-        
+    def show
+    end
+
+    def edit  
     end
 
     def create  
