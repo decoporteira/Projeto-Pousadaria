@@ -53,7 +53,7 @@
     <% rooms.each do |room| %>
       <dl>
         <dt>Nome:</dt>
-        <dd><%= room.name %></dd>
+        <dd> <%= link_to "#{room.name}", room_path(room)%><%=  %></dd>
         <dt>Descrição:</dt>
         <dd><%= room.description %></dd>
         <dt>Tamanho:</dt>
@@ -77,9 +77,6 @@
         <dt>Disponibilidade:</dt>
         <dd><%= room.available %></dd>
       </dl>
-      <% if current_user.nil? || current_user.guest? %>
-        <%= link_to 'Reservar', room_path(room)%>
-      <% end %>
     <% end%>
   <% end%>
 </section>

@@ -1,1 +1,20 @@
 <h1>Quando deseja se hospedar?</h1>
+Nome: <%= @room.name%>
+<%= form_with(model: @room, url: check_availability_room_path(@room), method: :post) do |f| %>
+  <!-- Seus campos de formulário aqui -->
+  <div class="field">
+    <%= f.label :guest_number %>
+    <%= f.text_field :guest_number %>
+  </div>
+  <div>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date%>
+  </div>
+  <div>
+    <%= f.label :final_date%>
+    <%= f.date_field :final_date%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Fazer pre-reserva" %>
+  </div>
+<% end %>

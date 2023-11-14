@@ -51,7 +51,7 @@
         <%= link_to 'Cadastrar novo preço', new_price_path(@room.id)%>
         <%= button_to 'Apagar', @room, method: :delete, class:'btn btn-outline-danger mt-3' %>
       <%else%>
-        <%= link_to 'Reservar', pre_reservation_room_path %>
+        <%= link_to 'Reservar', pre_reservation_room_path, class:'btn btn-primary mt-3' %>
       <% end%>
     </div>
   </section>
