@@ -62,7 +62,6 @@
         <dd><%= room.guest %></dd>
         <dt>Diária:</dt>
         <%= number_to_currency(current_price(room), locale: :'pt-BR') %>
-        <%#= number_to_currency(room.current_price, locale: :'pt-BR') %>
         <dt>Varanda: </dt>
         <dd><%= room.balcony %></dd>
         <dt>Tv:</dt>
@@ -78,6 +77,9 @@
         <dt>Disponibilidade:</dt>
         <dd><%= room.available %></dd>
       </dl>
+      <% if current_user.nil? || current_user.guest? %>
+        <%= link_to 'Reservar', room_path(room)%>
+      <% end %>
     <% end%>
   <% end%>
 </section>

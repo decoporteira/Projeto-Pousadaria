@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
-    before_action :set_room, only: [:show, :edit, :update, :destroy] 
-    before_action :authenticate_user!
+    before_action :set_room, only: [:show, :edit, :update, :book, :destroy] 
+    before_action :authenticate_user!, only: [:edit, :update, :destroy, :index]
     before_action :can_edit, only: [:edit, :update]
 
     def index
@@ -45,9 +45,12 @@ class RoomsController < ApplicationController
         @room.destroy()
         redirect_to rooms_path, notice: 'Quarto removido com sucesso.'
     end
-    
 
+    def pre_reservation
+
+    end
     private
+
     def room_params
         room_params = params.require(:room).permit(:name, :description, :guest, :size, :daily_rate, :balcony, :air_conditioner, :tv, :wardrobe, :safe, :accessible, :available)
     end

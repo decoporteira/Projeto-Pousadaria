@@ -31,24 +31,28 @@
         <dt>Disponibilidade:</dt>
         <dd><%= @room.available %></dd>
       </dl>
-      <h3>Preços por período:</h3>
-      <% if @prices.nil? %>
-        <p>Não existem preços cadastrado.</p>
-      <% else %>
-        <% @prices.each do |price|%>
-          <dl>
-            <dt>Novo preço: </dt>
-            <dd><%= number_to_currency(price.new_rate, locale: :'pt-BR') %></dd>
-            <dt>Datas: </dt>
-            <dd>Entre: <%= I18n.l(price.start_date) %> até <%= I18n.l(price.final_date) %></dd>
-          </dl>
-          <%= link_to 'Ver precificação', price_path(price) %>
-          <p>----------------</p>
+      <% if (current_user.present? && current_user.owner?) %>
+        <h3>Preços por período:</h3>
+        <% if @prices.nil? %>
+          <p>Não existem preços cadastrado.</p>
+        <% else %>
+          <% @prices.each do |price|%>
+            <dl>
+              <dt>Novo preço: </dt>
+              <dd><%= number_to_currency(price.new_rate, locale: :'pt-BR') %></dd>
+              <dt>Datas: </dt>
+              <dd>Entre: <%= I18n.l(price.start_date) %> até <%= I18n.l(price.final_date) %></dd>
+            </dl>
+            <%= link_to 'Ver precificação', price_path(price) %>
+            <p>----------------</p>
+          <% end %>
         <% end %>
-      <% end %>
-      <%= link_to 'Editar', edit_room_path %>
-      <%= link_to 'Cadastrar novo preço', new_price_path(@room.id)%>
-      <%= button_to 'Apagar', @room, method: :delete, class:'btn btn-outline-danger mt-3' %>
+        <%= link_to 'Editar', edit_room_path %>
+        <%= link_to 'Cadastrar novo preço', new_price_path(@room.id)%>
+        <%= button_to 'Apagar', @room, method: :delete, class:'btn btn-outline-danger mt-3' %>
+      <%else%>
+        <%= link_to 'Reservar', pre_reservation_room_path %>
+      <% end%>
     </div>
-  <% end%>
-</section>
+  </section>
+<%end%>
