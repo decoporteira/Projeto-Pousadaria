@@ -12,10 +12,12 @@ Rails.application.routes.draw do
       get 'advanced_search_results', on: :collection
     end
     resources :rooms, only: [:new, :create, :index, :show, :edit, :update, :destroy]  do
-      post 'check_availability', on: :member
       get 'pre_reservation', on: :member
-      post 'check_room', on: :member
-      resources :reservations, only: [:new, :create]
+      #post 'check_room', on: :member
+      resources :reservations, only: [:new, :create] do
+        get 'check', on: :collection
+        post 'validates', on: :collection
+      end
     end
     resources :prices, only: [:new, :create, :show, :edit, :update, :destroy] 
  

@@ -1,6 +1,6 @@
 <h1>Quando deseja se hospedar?</h1>
 Nome: <%= @room.name%>
-<%= form_with(model: [@room, @reservation]) do |f| %>
+<%= form_with(model: @reservation, url: validates_room_reservations_path, method: :post) do |f| %>
   <!-- Seus campos de formulário aqui -->
   <div class="field">
     <%= f.label :guest_number %>

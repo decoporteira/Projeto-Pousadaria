@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-    before_action :set_room, only: [:show, :edit, :update, :book, :destroy, :check_availability, :pre_reservation] 
+    before_action :set_room, only: [:show, :edit, :update, :book, :destroy] 
     before_action :authenticate_user!, only: [:edit, :update, :destroy, :index]
     before_action :can_edit, only: [:edit, :update]
 
@@ -45,30 +45,9 @@ class RoomsController < ApplicationController
         @room.destroy()
         redirect_to rooms_path, notice: 'Quarto removido com sucesso.'
     end
-    def pre_reservation
-
-    end
-    def check_availability
-        guest_number = params[:room][:guest_number].to_i
-        guest_rule = @room.guest.to_i
-        current_range = (params[:room][:start_date].to_date)..(params[:room][:final_date].to_date)
-        @room.reservations.each do |reservation|
-            loop_range = reservation.start_date..reservation.final_date
-            
-            if current_range.overlaps?(loop_range)
-                flash.now[:notice] = "Pre-reserva não pode ser feita, data já foi reservada."    
-                render :pre_reservation, status: 422
-            elsif guest_number > guest_rule
-                flash.now[:notice] = "Pre-reserva não pode ser feita, mais hóspedes do que o quarto comporta."    
-                render :pre_reservation, status: 422
-                else
-                    redirect_to new_room_reservation_path(@room), notice: 'Reserva feita com sucesso.'
-            end
-        end
-    end
    
     private
-    
+
     def room_params
         room_params = params.require(:room).permit(:name, :description, :guest, :size, :daily_rate, :balcony, :air_conditioner, :tv, :wardrobe, :safe, :accessible, :available)
     end
