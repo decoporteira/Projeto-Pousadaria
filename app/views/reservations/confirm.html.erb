@@ -1,0 +1,15 @@
+<h1>Detalhes da Reserva</h1>
+<div>
+  <dl>
+    <dt>Nome:</dt>
+    <dd><%= @room.name %></dd>
+    <dt>Preço da reserva:</dt>
+    <dd><%= number_to_currency(@reservation.total_price, locale: :'pt-BR') %></dd>
+    <dt>Hóspedes:</dt>
+    <dd><%= @reservation.guest_number %></dd>
+    <dt>Check-in:</dt>
+    <dd><%= @reservation.start_date%></dd>
+    <dt>Check-out:</dt>
+    <dd><%=@reservation.final_date%></dd>
+  </dl>
+  <%= link_to 'Criar reserva', new_room_reservation_path(@room) %>

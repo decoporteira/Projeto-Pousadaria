@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-    #before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:new]
     before_action :set_room
     
     def new
@@ -11,6 +11,14 @@ class ReservationsController < ApplicationController
 
     def create
         
+    end
+
+    def confirm
+        @reservation = Reservation.new
+        @reservation.total_price
+        @reservation.guest_number
+        @reservation.start_date
+        @reservation.final_date
     end
     def validates
         @reservation = Reservation.new
@@ -33,9 +41,7 @@ class ReservationsController < ApplicationController
                 @reservation.final_date = params[:reservation][:final_date].to_date
 
                 flash.now[:notice] = "Reserva feita com sucesso."    
-                render :new, status: 422
-                # flash[:notice] = "Reserva feita com sucesso."
-                # redirect_to new_room_reservation_path                 
+                render 'reservations/confirm', status: 422    
             end
         end
     end

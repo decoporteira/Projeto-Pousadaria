@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       #post 'check_room', on: :member
       resources :reservations, only: [:new, :create] do
         get 'check', on: :collection
+        get 'confirm', on: :collection
         post 'validates', on: :collection
       end
     end
