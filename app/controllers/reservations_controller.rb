@@ -8,6 +8,10 @@ class ReservationsController < ApplicationController
     def check
         @reservation = Reservation.new
     end
+
+    def create
+        
+    end
     def validates
         @reservation = Reservation.new
         guest_number = params[:reservation][:guest_number].to_i
@@ -30,7 +34,8 @@ class ReservationsController < ApplicationController
 
                 flash.now[:notice] = "Reserva feita com sucesso."    
                 render :new, status: 422
-                 
+                # flash[:notice] = "Reserva feita com sucesso."
+                # redirect_to new_room_reservation_path                 
             end
         end
     end
