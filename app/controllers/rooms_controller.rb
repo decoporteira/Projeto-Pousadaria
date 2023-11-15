@@ -62,7 +62,7 @@ class RoomsController < ApplicationController
                 flash.now[:notice] = "Pre-reserva não pode ser feita, mais hóspedes do que o quarto comporta."    
                 render :pre_reservation, status: 422
                 else
-                    redirect_to pre_reservation_room_path(@room), notice: 'Reserva feita com sucesso.'
+                    redirect_to new_room_reservation_path(@room), notice: 'Reserva feita com sucesso.'
             end
         end
     end
