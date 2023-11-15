@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário cadastra pousada' do
     it 'com sucesso' do
         #arrange
-        user = User.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
+        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
        
         #act
         visit root_path

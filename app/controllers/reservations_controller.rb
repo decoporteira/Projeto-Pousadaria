@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-    before_action :authenticate_user!, only: [:new]
+    before_action :authenticate_owner!, only: [:new]
     before_action :set_room
     
     def new

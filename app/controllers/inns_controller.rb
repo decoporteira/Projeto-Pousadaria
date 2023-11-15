@@ -1,5 +1,5 @@
 class InnsController < ApplicationController
-    before_action :authenticate_user!, only: [:edit]
+    before_action :authenticate_owner!, only: [:edit]
     before_action :set_inn, only: [:show, :edit, :update] 
     before_action :cant_edit, only: [:edit, :update, :destroy]
 
@@ -9,8 +9,8 @@ class InnsController < ApplicationController
     end
 
     def index
-        current_user
-        @inn = Inn.find_by(user_id: current_user.id) 
+        current_owner
+        @inn = Inn.find_by(owner_id: current_owner.id) 
     end
 
     def show
@@ -20,8 +20,9 @@ class InnsController < ApplicationController
     end
 
     def create  
+       
         @inn = Inn.new(inn_params)
-        @inn.user = current_user
+        @inn.owner_id = current_owner.id
         if @inn.save()
            redirect_to root_path, notice: "Pousada cadastrada com sucesso."
         else
@@ -66,7 +67,7 @@ class InnsController < ApplicationController
 
     
     def inn_params
-        inn_params = params.require(:inn).permit(:trade_name, :company_name, :registration_number, :phone, :email, :address, :neighborhood, :city, :zip_code, :description, :payment_methods, :pet, :rules, :check_in, :check_out, :status)
+        inn_params = params.require(:inn).permit(:trade_name, :company_name, :registration_number, :phone, :email, :address, :neighborhood, :city, :zip_code, :description, :payment_methods, :pet, :rules, :check_in, :check_out, :status, )
     end
 
     def set_inn
@@ -74,7 +75,7 @@ class InnsController < ApplicationController
     end
 
     def cant_edit
-        current_user.id
-        redirect_to root_path unless @inn.user_id == current_user.id
+        current_owner.id
+        redirect_to root_path unless @inn.owner_id == current_owner.id
     end
 end

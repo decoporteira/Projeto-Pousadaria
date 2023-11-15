@@ -1,17 +1,20 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
     before_action :check_user_inn, only: [:index, :edit]
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
+
 
     protected
   
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name, :role => 1])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name])
     end
 
     private 
     def check_user_inn
-      if user_signed_in?
-        @inn = Inn.find_by(user_id: current_user.id)
+      if owner_signed_in?
+        @inn = Inn.find_by(owner_id: current_owner.id)
         if @inn.nil?
           flash[:notice] = "Você não tem uma pousada cadastrada. Por favor, complete seu cadastro."
           redirect_to new_inn_path

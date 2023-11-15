@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_15_154102) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_232340) do
   create_table "guests", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -42,10 +42,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_15_154102) do
     t.time "check_in"
     t.time "check_out"
     t.integer "status"
-    t.integer "user_id", null: false
+    t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_inns_on_user_id"
+    t.index ["owner_id"], name: "index_inns_on_owner_id"
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "last_name"
+    t.integer "role"
+    t.index ["email"], name: "index_owners_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
   create_table "prices", force: :cascade do |t|
@@ -88,22 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_15_154102) do
     t.index ["inn_id"], name: "index_rooms_on_inn_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "last_name"
-    t.integer "role"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  add_foreign_key "inns", "users"
+  add_foreign_key "inns", "owners"
   add_foreign_key "prices", "rooms"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "rooms", "inns"

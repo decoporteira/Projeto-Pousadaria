@@ -12,16 +12,16 @@
     <div class="container">
       <nav class='d-flex justify-content-center align-items-center'>
         <%= link_to "Início", root_path, class:'px-3' %>
-        <% if user_signed_in? %>
+        <% if owner_signed_in? %>
           <%= link_to 'Cadastrar pousada', new_inn_path, class:'px-3'%>
           <%= link_to 'Pousada', inns_path, class:'px-3' %>
           <%= link_to 'Quartos', rooms_path, class:'px-3'%>
-          <%= link_to 'Seus dados', edit_user_registration_path, class:'px-3'%>
-          olá <%= current_user.name%>
-          <%= current_user.email%>
-          <%= button_to 'Sair', destroy_user_session_path, method: :delete, class:'btn btn-outline-danger mx-3' %>
+          <%= link_to 'Seus dados', edit_owner_registration_path, class:'px-3'%>
+          olá <%= current_owner.name%>
+          <%= current_owner.email%>
+          <%= button_to 'Sair', destroy_owner_session_path, method: :delete, class:'btn btn-outline-danger mx-3' %>
         <% else %>
-          <%= link_to "Entrar", new_user_session_path , class:'px-3'%>
+          <%= link_to "Entrar", new_owner_session_path , class:'px-3'%>
         <% end %>
         <%= form_with url: search_inns_path, method: :get do |f| %>
           <%=f.label :query, 'Buscar pousada:'%>

@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe 'Usuário entra página de criação do quarto' do
     it 'com sucesso' do
-        user = User.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
+        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
         Inn.create!(trade_name: 'Pousada de Teste', company_name: 'Pousada de Teste LTDA', registration_number: '5454354355435', phone: '23243423432', email: 'pousada@amores.com', address: 'Rua das Covas, 123', 
                     neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', payment_methods: 'Apenas PIX', pet: 'permitidos', rules: 'Não pode ouvir música alta.',
-                    status: "ativa", user_id: user.id,  check_in: '12:00', check_out: '14:00')
+                    status: "ativa", owner_id: user.id,  check_in: '12:00', check_out: '14:00')
         visit(root_path)
         login(user)
         click_on 'Quartos'
@@ -17,10 +17,10 @@ describe 'Usuário entra página de criação do quarto' do
         
     end
     it 'e cadastra um quarto com sucesso' do
-        user = User.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
+        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
         Inn.create!(trade_name: 'Pousada de Teste', company_name: 'Pousada de Teste LTDA', registration_number: '5454354355435', phone: '23243423432', email: 'pousada@amores.com', address: 'Rua das Covas, 123', 
                     neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', payment_methods: 'Apenas PIX', pet: 'permitidos', rules: 'Não pode ouvir música alta.',
-                    status: "ativa", user_id: user.id, check_in: '12:00', check_out: '14:00')
+                    status: "ativa", owner_id: user.id, check_in: '12:00', check_out: '14:00')
         visit(root_path)
         login(user)
         click_on 'Quartos'

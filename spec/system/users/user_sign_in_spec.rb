@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário se autentica' do
     it 'com sucesso' do
         #arrange
-        User.create!(name: 'André', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
+        Owner.create!(name: 'André', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
         #act
         visit root_path
         click_on 'Entrar'
@@ -22,7 +22,7 @@ describe 'Usuário se autentica' do
         end
     end
     it 'e faz logout' do
-        User.create!(name: 'André', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
+        Owner.create!(name: 'André', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
     
         visit root_path
         click_on 'Entrar'

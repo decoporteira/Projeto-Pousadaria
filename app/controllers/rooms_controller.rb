@@ -1,10 +1,10 @@
 class RoomsController < ApplicationController
     before_action :set_room, only: [:show, :edit, :update, :book, :destroy] 
-    before_action :authenticate_user!, only: [:edit, :update, :destroy, :index]
+    before_action :authenticate_owner!, only: [:edit, :update, :destroy, :index]
     before_action :can_edit, only: [:edit, :update]
 
     def index
-        @inn = Inn.find_by(user_id: current_user.id )
+        @inn = Inn.find_by(owner_id: current_owner.id )
         @rooms = Room.where(inn_id: @inn.id)
     end
 
@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
     end
 
     def create 
-        @inn = Inn.find_by(user_id:current_user.id )
+        @inn = Inn.find_by(owner_id:current_owner.id )
         @room = Room.new(room_params)
         @room.inn_id = @inn.id
         if @room.save()
@@ -57,7 +57,7 @@ class RoomsController < ApplicationController
     end
 
     def can_edit
-        @inn = Inn.find_by(user_id: current_user.id )
+        @inn = Inn.find_by(owner_id: current_owner.id )
         redirect_to root_path unless @room.inn_id == @inn.id
     end
 end

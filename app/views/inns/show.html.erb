@@ -8,7 +8,7 @@
       <dl>
         <dt><%= Inn.human_attribute_name(:trade_name)%>:</dt>
         <dd><%= @inn.trade_name %></dd>
-        <% if (current_user.present? && current_user.owner?) %>
+        <% if (current_owner.present? && current_owner.owner?) %>
           <dt><%= Inn.human_attribute_name(:company_name)%>:</dt>
           <dd><%= @inn.company_name %></dd>
           <dt>CNPJ:</dt>
@@ -42,7 +42,7 @@
         <dd><%= @inn.status %></dd>
       </dl>
     </div>
-    <% if (current_user.present? && current_user.owner?) %>
+    <% if (current_owner.present? && current_owner.owner?) %>
       <%= link_to 'Editar detalhes', edit_inn_path(@inn)%>
       <% rooms = @inn.rooms%>
     <% else %>
