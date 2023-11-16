@@ -25,11 +25,11 @@ describe 'Usuário criar conta' do
 
     it 'e ainda não cadastrou uma pousada' do
         #arrange
-        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role:1)
+        owner = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role:1)
 
         #act
-        visit root_path
-        login(user)
+        login_as(owner, :scope => :owner)
+        visit(root_path)
         
         expect(current_path).to eq new_inn_path
         expect(page).to have_content 'Você não tem uma pousada cadastrada. Por favor, complete seu cadastro.'
@@ -38,11 +38,11 @@ describe 'Usuário criar conta' do
 
     it 'e ainda não cadastrou uma pousada e tenta clicar em outro link' do
         #arrange
-        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role:1)
+        owner = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role:1)
 
         #act
-        visit root_path
-        login(user)
+        login_as(owner, :scope => :owner)
+        visit(root_path)
         click_on 'Seus dados'
         
         expect(current_path).to eq new_inn_path

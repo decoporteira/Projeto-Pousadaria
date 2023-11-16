@@ -3,11 +3,11 @@ require 'rails_helper'
 describe 'Usuário cadastra pousada' do
     it 'com sucesso' do
         #arrange
-        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
+        owner = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
        
         #act
-        visit root_path
-        login(user)
+        login_as(owner, :scope => :owner)
+        visit(root_path)
         click_on 'Cadastrar pousada'
         fill_in 'Nome Fantasia', with: 'Pousada dos Amores'
         fill_in 'Razão Social', with: 'Pousada dos Amores SA'

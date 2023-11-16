@@ -2,13 +2,13 @@ require 'rails_helper'
 
 describe 'Usuário visita tela de edição da Pousada' do
     it 'com sucesso' do
-        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password',  role: 1)
+        owner = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password',  role: 1)
         Inn.create!(trade_name: 'Pousada de Teste', company_name: 'Pousada de Teste LTDA', registration_number: '5454354355435', phone: '23243423432', email: 'pousada@amores.com', address: 'Rua das Covas, 123', 
                     neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', payment_methods: 'Apenas PIX', pet: 'permitidos', rules: 'Não pode ouvir música alta.',
-                        check_in: '12:00', check_out: '14:00', status: "ativa", owner_id: user.id)
+                        check_in: '12:00', check_out: '14:00', status: "ativa", owner_id: owner.id)
         
+        login_as(owner, :scope => :owner)
         visit(root_path)
-        login(user)
                         
         click_on 'Pousada'
         click_on 'Detalhes'
@@ -18,13 +18,13 @@ describe 'Usuário visita tela de edição da Pousada' do
 
     end
     it 'com sucesso e editar os dados' do
-        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
+        owner = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
         Inn.create!(trade_name: 'Pousada de Teste', company_name: 'Pousada de Teste LTDA', registration_number: '5454354355435', phone: '23243423432', email: 'pousada@amores.com', address: 'Rua das Covas, 123', 
-        neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', payment_methods: 'Apenas PIX', pet: 'permitidos', rules: 'Não pode ouvir música alta.',
-            check_in: '12:00', check_out: '14:00', status: "ativa", owner_id: user.id)
+        neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', payment_methods: 'Apenas PIX', pet: 'permitidos', rules: 'Não pode ouvir música alta.', check_in: '12:00', check_out: '14:00', status: "ativa", owner_id: owner.id)
+        
+        
+        login_as(owner, :scope => :owner)
         visit(root_path)
-        login(user)
-       
 
         visit(root_path)
         click_on 'Pousada'
