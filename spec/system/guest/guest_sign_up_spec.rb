@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário cria conta' do
+describe 'Hóspede cria conta' do
     it 'com sucesso' do
         #arrange
     
@@ -12,7 +12,7 @@ describe 'Usuário cria conta' do
         click_on 'Criar conta'
         fill_in 'Nome', with: 'André'
         fill_in 'Cpf', with: '07345445319'
-        fill_in 'E-mail', with: 'andre@pousadaria.com'
+        fill_in 'E-mail', with: 'andre@guest.com'
         fill_in 'Senha', with: 'password'
         fill_in 'Confirme sua senha', with: 'password'
         click_on 'Criar conta'
