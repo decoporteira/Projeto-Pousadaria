@@ -7,7 +7,7 @@ describe 'Usuário criar conta' do
         #act
         visit root_path
         within ('nav') do
-            click_on 'Entrar'
+            click_on 'Anfitrião'
         end
         click_on 'Sign up'
         fill_in 'Nome', with: 'André'

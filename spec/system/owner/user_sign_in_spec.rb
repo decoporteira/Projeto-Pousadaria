@@ -6,7 +6,7 @@ describe 'Usuário se autentica' do
         Owner.create!(name: 'André', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
         #act
         visit root_path
-        click_on 'Entrar'
+        click_on 'Anfitrião'
         fill_in 'E-mail', with: 'andre@pousadaria.com'
         fill_in 'Senha', with: 'password'
         within('.new_user') do
@@ -25,7 +25,7 @@ describe 'Usuário se autentica' do
         Owner.create!(name: 'André', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
     
         visit root_path
-        click_on 'Entrar'
+        click_on 'Anfitrião'
         fill_in 'E-mail', with: 'andre@pousadaria.com'
         fill_in 'Senha', with: 'password'
         within('.new_user') do

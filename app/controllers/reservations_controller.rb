@@ -1,16 +1,27 @@
 class ReservationsController < ApplicationController
-    before_action :authenticate_owner!, only: [:new]
+    before_action :authenticate_guest!, only: [:new]
     before_action :set_room
     
     def new
         @reservation = Reservation.new
+        @reservation.total_price
+        @reservation.guest_number
+        @reservation.start_date
+        @reservation.final_date
     end
     def check
         @reservation = Reservation.new
     end
 
     def create
+        @reservation = Reservation.new(set_params)
         
+        if @reservation.save()
+            redirect_to room_registration_path(@room), notice: 'Reserva confirmada com sucesso.'
+        else  
+            flash.now[:notice] = "Reserva não foi confirmada, tente novamente."
+            render :new, status: 422
+        end
     end
 
     def confirm
@@ -46,7 +57,6 @@ class ReservationsController < ApplicationController
         end
     end
    
-
     private
 
     def set_room
@@ -71,4 +81,7 @@ class ReservationsController < ApplicationController
         @total_price = total_price
     end
 
+    def set_params
+        reservation_params = params.require(:reservation).permit(:guest_number, :start_date, :final_date, :room_id, :guest_id)
+    end
 end
