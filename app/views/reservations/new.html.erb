@@ -1,10 +1,26 @@
 <h1>Confirmar sua reserva:</h1>
 Nome: <%= @room.name%>
+<div>
+  <dl>
+    <dt>Nome:</dt>
+    <dd><%= @room.name %></dd>
+    <dt>Métodos de pagamento:</dt>
+    <dd><%#= @inn.payment_methods %></dd>
+    <dt>Check in:</dt>
+    <dd><%#= @inn.check_in.strftime('%H:%M') %></dd>
+    <dt>Check out:</dt>
+    <dd><%#= @inn.check_out.strftime('%H:%M') %></dd>
+  </dl>
+</div>
 <%= form_with(model: [@room, @reservation]) do |f| %>
   <!-- Seus campos de formulário aqui -->
   <div class="field">
     <%= f.label :guest_number %>
     <%= f.text_field :guest_number %>
+  </div>
+  <div>
+    <%= f.label :total_price %>
+    <%= f.text_field :total_price%>
   </div>
   <div>
     <%= f.label :start_date %>

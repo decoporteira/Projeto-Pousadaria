@@ -13,4 +13,8 @@ class Price < ApplicationRecord
       end
     end
   end
+
+  def get_price
+    500
+  end
 end
