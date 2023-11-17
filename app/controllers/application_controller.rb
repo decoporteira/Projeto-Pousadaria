@@ -4,6 +4,15 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
 
 
+    def after_sign_in_path_for(resource)
+      if session[:has_pre_reservation].present?
+        room_reservation_path = new_room_reservation_path(session[:room])
+        session[:has_pre_reservation] = nil
+        return room_reservation_path
+      else
+        super
+      end
+    end
 
     protected
   

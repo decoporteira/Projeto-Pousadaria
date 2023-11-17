@@ -1,0 +1,21 @@
+<h1>Detalhes da Reserva
+  <h1>
+    <div>
+      <dl>
+        <dt>Nome:</dt>
+        <dd><%= @room.name %></dd>
+        <dt>Número de hóspedes:</dt>
+        <dd><%= session[:guest] %></dd>
+        <dt>Preço total da estadia:</dt>
+        <dd><%= number_to_currency(session[:price], locale: :'pt-BR') %></dd>
+        <dt>Dia da entranda:</dt>
+        <dd><%= I18n.l(session[:start].to_date) %></dd>
+        <dt>Dia da saída:</dt>
+        <dd><%= I18n.l(session[:final].to_date) %></dd>
+        <dd><%= @inn.payment_methods %></dd>
+        <dt>Check in:</dt>
+        <dd><%= @inn.check_in.strftime('%H:%M') %></dd>
+        <dt>Check out:</dt>
+        <dd><%= @inn.check_out.strftime('%H:%M') %></dd>
+      </dl>
+    </div>

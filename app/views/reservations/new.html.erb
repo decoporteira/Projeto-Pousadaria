@@ -1,34 +1,41 @@
 <h1>Confirmar sua reserva:</h1>
-Nome: <%= @room.name%>
 <div>
   <dl>
     <dt>Nome:</dt>
     <dd><%= @room.name %></dd>
-    <dt>Métodos de pagamento:</dt>
-    <dd><%#= @inn.payment_methods %></dd>
+    <dt>Número de hóspedes:</dt>
+    <dd><%= session[:guest] %></dd>
+    <dt>Preço total da estadia:</dt>
+    <dd><%= number_to_currency(session[:price], locale: :'pt-BR') %></dd>
+    <dt>Dia da entranda:</dt>
+    <dd><%= I18n.l(session[:start].to_date) %></dd>
+    <dt>Dia da saída:</dt>
+    <dd><%= I18n.l(session[:final].to_date) %></dd>
+    <dt>Métodos de Pagamento:</dt>
+    <dd><%= @inn.payment_methods %></dd>
     <dt>Check in:</dt>
-    <dd><%#= @inn.check_in.strftime('%H:%M') %></dd>
+    <dd><%= @inn.check_in.strftime('%H:%M') %></dd>
     <dt>Check out:</dt>
-    <dd><%#= @inn.check_out.strftime('%H:%M') %></dd>
+    <dd><%= @inn.check_out.strftime('%H:%M') %></dd>
   </dl>
 </div>
 <%= form_with(model: [@room, @reservation]) do |f| %>
   <!-- Seus campos de formulário aqui -->
   <div class="field">
-    <%= f.label :guest_number %>
-    <%= f.text_field :guest_number %>
+    
+    <%= f.hidden_field :guest_number %>
   </div>
   <div>
-    <%= f.label :total_price %>
-    <%= f.text_field :total_price%>
+   
+    <%= f.hidden_field  :total_price%>
   </div>
   <div>
-    <%= f.label :start_date %>
-    <%= f.date_field :start_date%>
+    
+    <%= f.hidden_field  :start_date%>
   </div>
   <div>
-    <%= f.label :final_date%>
-    <%= f.date_field :final_date%>
+  
+    <%= f.hidden_field  :final_date%>
   </div>
   <div class="actions">
     <%= f.submit "Confirmar Reserva" %>

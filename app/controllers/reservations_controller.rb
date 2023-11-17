@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
     before_action :set_inn, only: [:new]
     
     def new
-        p params
+        p session[:start]
         @reservation = Reservation.new
         @reservation.total_price = params[:price]
         @reservation.guest_number = params[:guest_number]
@@ -21,11 +21,9 @@ class ReservationsController < ApplicationController
     def create
         @prices = Price.where(room_id: @room.id)
         @reservation = Reservation.new(set_params)
-        p '-------------------------'
-        p @reservation.guest_id = current_guest.id
+        @reservation.guest_id = current_guest.id
         @reservation.room_id = @room.id
-        p @reservation
-        p '-------------------------'
+
         
         if @reservation.save()
             redirect_to room_reservations_path(@room), notice: 'Reserva confirmada com sucesso.'
@@ -41,14 +39,20 @@ class ReservationsController < ApplicationController
         @reservation.guest_number
         @reservation.start_date
         @reservation.final_date
+        
     end
+    
     def validates
         @reservation = Reservation.new
         @reservation.total_price
         @reservation.guest_number
         @reservation.start_date
         @reservation.final_date
-        
+        session[:has_pre_reservation] = true
+        session[:room] = @room.id
+        session[:guest] = params[:reservation][:guest_number]
+        session[:start] = params[:reservation][:start_date]
+        session[:final] = params[:reservation][:final_date]
         guest_number = params[:reservation][:guest_number].to_i
         guest_rule = @room.guest.to_i
         current_range = (params[:reservation][:start_date].to_date)..(params[:reservation][:final_date].to_date)
@@ -66,7 +70,7 @@ class ReservationsController < ApplicationController
                 @reservation.guest_number = guest_number
                 @reservation.start_date = params[:reservation][:start_date].to_date
                 @reservation.final_date = params[:reservation][:final_date].to_date
-
+                session[:price] = @reservation.total_price
                 flash.now[:notice] = "Pre-reserva feita com sucesso."    
                 return   render 'reservations/confirm', status: 422    
             end
