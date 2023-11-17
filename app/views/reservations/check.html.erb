@@ -1,7 +1,14 @@
 <h1>Quando deseja se hospedar?</h1>
 Nome: <%= @room.name%>
+<% if(@reservation.errors.any?)%>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @reservation.errors.full_messages.each do |msg|%>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_with(model: @reservation, url: validates_room_reservations_path, method: :post) do |f| %>
-  <!-- Seus campos de formulário aqui -->
   <div class="field">
     <%= f.label :guest_number %>
     <%= f.text_field :guest_number %>
@@ -18,6 +25,3 @@ Nome: <%= @room.name%>
     <%= f.submit "Fazer pre-reserva" %>
   </div>
 <% end %>
-<div>Preço: 
-  <%= number_to_currency(@reservation.total_price, locale: :'pt-BR') %>
-</div>

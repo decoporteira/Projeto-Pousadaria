@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :rooms, only: [:new, :create, :index, :show, :edit, :update, :destroy]  do
     get 'pre_reservation', on: :member
     #post 'check_room', on: :member
-    resources :reservations, only: [:new, :create] do
+    resources :reservations, only: [:new, :create, :show] do
       get 'check', on: :collection
       get 'confirm', on: :collection
       post 'validates', on: :collection

@@ -22,25 +22,18 @@
 <%= form_with(model: [@room, @reservation]) do |f| %>
   <!-- Seus campos de formulário aqui -->
   <div class="field">
-    
     <%= f.hidden_field :guest_number %>
   </div>
   <div>
-   
     <%= f.hidden_field  :total_price%>
   </div>
   <div>
-    
     <%= f.hidden_field  :start_date%>
   </div>
   <div>
-  
     <%= f.hidden_field  :final_date%>
   </div>
   <div class="actions">
     <%= f.submit "Confirmar Reserva" %>
   </div>
 <% end %>
-<div>Preço: 
-  <%= number_to_currency(@reservation.total_price, locale: :'pt-BR') %>
-</div>

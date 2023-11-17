@@ -151,4 +151,78 @@ describe 'Usuário tenta fazer uma pre-reserva' do
 
     end
 
+    it 'cria cadastro e é tenta fazer uma reserva com data já ocupada' do
+        #Arrange
+        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
+        inn = Inn.create!(trade_name: 'Pousada Nerd', company_name: 'Pousada de Teste LTDA', registration_number: '5454354355435', phone: '23243423432', email: 'pousada@amores.com', address: 'Rua das Covas, 123', neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', payment_methods: 'Apenas PIX', pet: 'permitidos', rules: 'Não pode ouvir música alta.', check_in: '12:00', check_out: '14:00', status: "ativa", owner_id: user.id)
+        room = Room.create!(name: 'Quarto Pokémon', description: 'Descrição: Quarto idéntico ao quarto de Ash.', size: 20, guest: 2, daily_rate: 20, balcony: 'possui', air_conditioner: 'não possui ar condicionado', available: 'sim', tv: 'não possui tv', wardrobe: 'possui guarda-roupas', safe: 'possui cofre', accessible: 'quarto sem acessibilidade', inn_id: inn.id)  
+        Price.create!(new_rate: 300, start_date: '2023-02-03', final_date: '2023-02-03', room_id: room.id)
+        guest = Guest.create!(name: 'Lily', cpf: '23456789', email: 'lily@guest.com', password: 'password')
+
+        
+            
+        
+        visit(root_path)
+        click_on 'Pousada Nerd'
+        click_on 'Quarto Pokémon'
+        click_on 'Reservar'
+        fill_in 'Guest number', with: 2
+        fill_in 'Start date', with: '2023-11-01'
+        fill_in 'Final date', with: '2023-11-06'
+        click_on 'Fazer pre-reserva'
+        click_on 'Fazer Reserva'
+        click_on 'Criar conta'
+        fill_in 'Nome', with: 'Bianca Rossini'
+        fill_in 'E-mail', with: 'bianca@guest.com'
+        fill_in 'Cpf', with: '32132131221'
+        fill_in 'Senha', with: 'password'
+        fill_in 'Confirme sua senha', with: 'password'
+        click_on 'Criar conta'
+        click_on 'Confirmar Reserva'
+        
+     
+        #assert
+        #expect(current_path).to eq room_reservation_path
+        expect(page).to have_content('Reserva confirmada com sucesso.')
+
+
+    end
+    it 'cria cadastro e é tenta fazer uma reserva com data já ocupada' do
+        #Arrange
+        user = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
+        inn = Inn.create!(trade_name: 'Pousada Nerd', company_name: 'Pousada de Teste LTDA', registration_number: '5454354355435', phone: '23243423432', email: 'pousada@amores.com', address: 'Rua das Covas, 123', neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', payment_methods: 'Apenas PIX', pet: 'permitidos', rules: 'Não pode ouvir música alta.', check_in: '12:00', check_out: '14:00', status: "ativa", owner_id: user.id)
+        room = Room.create!(name: 'Quarto Pokémon', description: 'Descrição: Quarto idéntico ao quarto de Ash.', size: 20, guest: 2, daily_rate: 20, balcony: 'possui', air_conditioner: 'não possui ar condicionado', available: 'sim', tv: 'não possui tv', wardrobe: 'possui guarda-roupas', safe: 'possui cofre', accessible: 'quarto sem acessibilidade', inn_id: inn.id)  
+        Price.create!(new_rate: 300, start_date: '2023-02-03', final_date: '2023-02-03', room_id: room.id)
+        guest = Guest.create!(name: 'Lily', cpf: '23456789', email: 'lily@guest.com', password: 'password')
+
+        
+            
+        
+        visit(root_path)
+        click_on 'Pousada Nerd'
+        click_on 'Quarto Pokémon'
+        click_on 'Reservar'
+        fill_in 'Guest number', with: 2
+        fill_in 'Start date', with: '2023-11-01'
+        fill_in 'Final date', with: '2023-11-06'
+        click_on 'Fazer pre-reserva'
+        click_on 'Fazer Reserva'
+        click_on 'Criar conta'
+        fill_in 'Nome', with: 'Bianca Rossini'
+        fill_in 'E-mail', with: 'bianca@guest.com'
+        fill_in 'Cpf', with: '32132131221'
+        fill_in 'Senha', with: 'password'
+        fill_in 'Confirme sua senha', with: 'password'
+        click_on 'Criar conta'
+        Reservation.create!(room_id: room.id, start_date: '2023-11-03', final_date: '2023-11-03', guest_number: 1, total_price: 200, guest_id: guest.id)
+        click_on 'Confirmar Reserva'
+        
+     
+        #assert
+        #expect(current_path).to eq room_reservation_path
+        expect(page).to have_content('Reserva não foi confirmada, tente novamente.')
+
+
+    end
+    
 end
