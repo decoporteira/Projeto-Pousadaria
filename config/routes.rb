@@ -19,8 +19,10 @@ Rails.application.routes.draw do
       get 'check', on: :collection
       get 'confirm', on: :collection
       post 'validates', on: :collection
+      
     end
   end
   resources :prices, only: [:new, :create, :show, :edit, :update, :destroy] 
- 
+  get 'list', to: 'reservations#list'
+
 end

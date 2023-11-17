@@ -16,7 +16,7 @@ describe 'Usuário tenta fazer uma pre-reserva' do
     click_on 'Reservar'
     fill_in 'Guest number', with: 3
     fill_in 'Start date', with: '2023-12-28'
-    fill_in 'Start date', with: '2023-12-30'
+    fill_in 'Final date', with: '2023-12-30'
     click_on 'Fazer pre-reserva'
  
     #assert

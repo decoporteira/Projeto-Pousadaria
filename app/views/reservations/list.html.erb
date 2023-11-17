@@ -1,0 +1,33 @@
+<h1>Minhas reservas</h1>
+<div>
+  <% if @reservations.nil? %>
+    <h3>Você não tem reservas feita.</h3>
+  <% else %>
+    <dl>
+      <% @reservations.each do |reservation| %>
+        <dt>Nome do quarto:</dt>
+        <dd> <%= link_to "#{reservation.room.name}",  room_reservation_path(reservation.room, reservation)%></dd>
+        <dt>Código da reserva:</dt>
+        <dd><%= reservation.code %></dd>
+        <dt>Número de hóspedes:</dt>
+        <dd><%= reservation.guest_number %></dd>
+        <dt>Preço total da estadia:</dt>
+        <dd><%= number_to_currency(reservation.total_price, locale: :'pt-BR') %></dd>
+        <dt>Dia da entranda:</dt>
+        <dd><%= I18n.l(reservation.start_date.to_date) %></dd>
+        <dt>Dia da saída:</dt>
+        <dd><%= I18n.l(reservation.final_date.to_date) %></dd>
+        <dd><%= reservation.room.inn.payment_methods %></dd>
+        <dt>Check in:</dt>
+        <dd><%= reservation.room.inn.check_in.strftime('%H:%M') %></dd>
+        <dt>Check out:</dt>
+        <dd><%= reservation.room.inn.check_out.strftime('%H:%M') %></dd>
+        <dt>Endereço:</dt>
+        <%= reservation.room.inn.address %>
+        <dt>Endereço:</dt>
+        <%= reservation.room.inn.city %>
+        <p> ------------------------------ </p>
+      <% end %>
+    </dl>
+  <% end %>
+</div>

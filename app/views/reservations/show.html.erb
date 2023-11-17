@@ -18,3 +18,4 @@
     <dd><%= @inn.check_out.strftime('%H:%M') %></dd>
   </dl>
 </div>
+<%= button_to "Cancelar Reserva", cancel_guest_registration_path(@reservation)%>

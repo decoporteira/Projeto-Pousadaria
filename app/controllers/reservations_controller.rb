@@ -1,9 +1,13 @@
 class ReservationsController < ApplicationController
     before_action :authenticate_guest!, only: [:new, :show]
-    before_action :set_room
-    before_action :set_inn
+    before_action :set_room, only: [:new, :show, :check, :confirm, :validates, :create]
+    before_action :set_inn, only: [:new, :show, :create]
     before_action :set_reservation, only: [:show]
     
+
+    def index
+        @reservations = Reservation.where(guest_id: current_guest.id)
+    end
     def new
         @reservation = Reservation.new
         @reservation.total_price = session[:price]
@@ -14,7 +18,10 @@ class ReservationsController < ApplicationController
     end
 
     def show
-
+        @reservations = Reservation.where(guest_id: current_guest.id)
+    end
+    def list
+        @reservations = Reservation.where(guest_id: current_guest.id)
     end
 
     def check
@@ -85,6 +92,10 @@ class ReservationsController < ApplicationController
     end
    
     private
+    def cancel_reservation
+        p @reservation
+    end
+
     def set_reservation
         @reservation = Reservation.find(params[:id])
     end
