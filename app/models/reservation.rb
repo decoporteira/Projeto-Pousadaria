@@ -4,13 +4,11 @@ class Reservation < ApplicationRecord
   validate :validate_dates
 
   def validate_dates
-    p '----------------------------------------------------------aaaaaa'
-    p current_range = (self.start_date..self.final_date)
+    current_range = (self.start_date..self.final_date)
      ranges = Price.where(room_id: self.room_id)
     ranges.each do |range|
-    p  new_range = range.start_date..range.final_date
+     new_range = range.start_date..range.final_date
       if (current_range.overlaps?new_range) && (self.id != range.id)
-        p '--------------------------------------------------------oooooooooooo'
         return errors.add(:start_date, " - Essa data já está em uso.")
       end
     end

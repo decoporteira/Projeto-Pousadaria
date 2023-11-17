@@ -4,7 +4,6 @@ class ReservationsController < ApplicationController
     before_action :set_inn, only: [:new]
     
     def new
-        p session[:start]
         @reservation = Reservation.new
         @reservation.total_price = params[:price]
         @reservation.guest_number = params[:guest_number]
@@ -75,7 +74,7 @@ class ReservationsController < ApplicationController
                 return   render 'reservations/confirm', status: 422    
             end
         end
-
+        session[:price] = @reservation.total_price = current_range.count *  @room.daily_rate
         flash.now[:notice] = "Pre-reserva feita com sucesso."    
         render 'reservations/confirm', status: 422  
     end

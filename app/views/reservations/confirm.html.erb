@@ -12,4 +12,4 @@
     <dt>Check-out:</dt>
     <dd><%= I18n.l(session[:final].to_date)%></dd>
   </dl>
-  <%= link_to 'Create New Room', new_room_reservation_path(price: @reservation.total_price, room_id: @room.id, guest_number: @reservation.guest_number, start: @reservation.start_date, end: @reservation.final_date) %>
+  <%= link_to 'Fazer Reserva', new_room_reservation_path(price: @reservation.total_price, room_id: @room.id, guest_number: @reservation.guest_number, start: @reservation.start_date, end: @reservation.final_date) %>
