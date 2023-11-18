@@ -12,20 +12,20 @@ describe 'Guest ve lista de reservas' do
         inn_two = Inn.create!(trade_name: 'Pousada Nerd', company_name: 'Pousada Nerd LTDA', registration_number: '545434684355435', phone: '32999-2232', email: 'pousada@nerd.com', address: 'Rua das Nerdes, 234', neighborhood: 'Aeroporto', city: 'Rio de Janeiro', zip_code: '239434-978', description: 'A melhor Pousada Nerd', payment_methods: 'Todos os cartões de crédito', pet: 'permitidos', rules: 'Não pode achar que Han não atirou primeiro.', check_in: '15:00', check_out: '12:00', status: "ativa", owner_id: owner_two.id)
         room_two = Room.create!(name: 'Quarto Pokémon', description: 'Descrição: Quarto idéntico ao quarto de Ash.', size: 20, guest: 2, daily_rate: 20, balcony: 'possui', air_conditioner: 'não possui ar condicionado', available: 'sim', tv: 'não possui tv', wardrobe: 'possui guarda-roupas', safe: 'possui cofre', accessible: 'quarto sem acessibilidade', inn_id: inn_two.id)  
 
-        Reservation.create!(guest_number: guest.id, start_date: '2023-12-28', final_date: '2023-12-29', room_id: room_one.id,  guest_id: guest.id, total_price: 400)
-        Reservation.create!(guest_number: guest.id, start_date: '2023-10-01', final_date: '2023-10-05', room_id: room_two.id,  guest_id: guest.id, total_price: 300)
-        
+        allow(SecureRandom).to receive(:alphanumeric).and_return('98765432')
+        Reservation.create!(guest_number: guest.id, start_date: 20.day.from_now, final_date:  24.day.from_now, room_id: room_one.id,  guest_id: guest.id, total_price: 400)
         allow(SecureRandom).to receive(:alphanumeric).and_return('12345678')
+        Reservation.create!(guest_number: guest.id, start_date:  20.day.from_now, final_date:  27.day.from_now, room_id: room_two.id,  guest_id: guest.id, total_price: 300)
+        
         #act
         login_as(guest, scope: :guest)
         visit(root_path)
         click_on 'Minhas reservas'
-       
     
         #assert
         expect(page).to have_content('Minhas reservas')
         expect(page).to have_content('Nome do quarto: Quarto Pokémon') 
-        #expect(page).to have_content('12345678') 
+        expect(page).to have_content('Código da reserva: 12345678')
         expect(page).to have_content('Preço total da estadia: R$ 400,00') 
         expect(page).to have_content('Nome do quarto: Quarto Zelda') 
         expect(page).to have_content('Preço total da estadia: R$ 300,00') 

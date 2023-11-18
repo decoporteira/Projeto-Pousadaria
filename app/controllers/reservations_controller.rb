@@ -1,8 +1,8 @@
 class ReservationsController < ApplicationController
     before_action :authenticate_guest!, only: [:new, :show]
-    before_action :set_room, only: [:new, :show, :check, :confirm, :validates, :create]
-    before_action :set_inn, only: [:new, :show, :create]
-    before_action :set_reservation, only: [:show]
+    before_action :set_room, only: [:new, :show, :check, :confirm, :validates, :create, :cancel_reservation]
+    before_action :set_inn, only: [:new, :show, :create, :cancel_reservation]
+    before_action :set_reservation, only: [:show, :cancel_reservation]
     
 
     def index
@@ -18,10 +18,11 @@ class ReservationsController < ApplicationController
     end
 
     def show
-        @reservations = Reservation.where(guest_id: current_guest.id)
+       
     end
+    
     def list
-        @reservations = Reservation.where(guest_id: current_guest.id)
+        @reservations = Reservation.where(guest_id: current_guest.id, active: true)
     end
 
     def check
@@ -34,9 +35,9 @@ class ReservationsController < ApplicationController
         @reservation.guest_id = current_guest.id
         @reservation.room_id = @room.id
 
-       
+        
         if @reservation.save()
-            redirect_to room_reservation_path(@room, @reservation), notice: 'Reserva confirmada com sucesso.'
+            redirect_to list_path, notice: 'Reserva confirmada com sucesso.'
         else  
             flash.now[:notice] = "Reserva não foi confirmada, tente novamente."
             render :new, status: 422
@@ -54,47 +55,39 @@ class ReservationsController < ApplicationController
     
     def validates
         if params[:reservation].nil? || params[:reservation][:guest_number].blank? || params[:reservation][:start_date].blank? || params[:reservation][:final_date].blank?
-            return redirect_to check_room_reservations_path(@room), notice: 'Campos não podem estar vazios.'   
-            
+            return redirect_to check_room_reservations_path(@room), notice: 'Campos não podem estar vazios.'      
         end
-
         @reservation = Reservation.new
         session[:has_pre_reservation] = true
-        session[:room] = @room.id
-        session[:guest] = params[:reservation][:guest_number]
-        session[:start] = params[:reservation][:start_date]
-        session[:final] = params[:reservation][:final_date]
-        guest_number = params[:reservation][:guest_number].to_i
-        guest_rule = @room.guest.to_i
-        current_range = (params[:reservation][:start_date].to_date)..(params[:reservation][:final_date].to_date)
-        @room.reservations.each do |reservation|
-            loop_range = reservation.start_date..reservation.final_date
-            
-            if current_range.overlaps?(loop_range)
-                flash.now[:notice] = "Pre-reserva não pode ser feita, data já foi reservada."    
-               return render :check, status: 422
-            elsif guest_number > guest_rule
-                flash.now[:notice] = "Pre-reserva não pode ser feita, mais hóspedes do que o quarto comporta."    
-                return  render :check, status: 422
-            else
-                @reservation.total_price = check_value(current_range)
-                @reservation.guest_number = guest_number
-                @reservation.start_date = params[:reservation][:start_date].to_date
-                @reservation.final_date = params[:reservation][:final_date].to_date
-                session[:price] = @reservation.total_price
-                flash.now[:notice] = "Pre-reserva feita com sucesso."    
-                return  render 'reservations/confirm', status: 422    
-            end
-        end
-        session[:price] = @reservation.total_price = current_range.count *  @room.daily_rate
-        flash.now[:notice] = "Pre-reserva feita com sucesso."    
-        render 'reservations/confirm', status: 422  
+        @reservation.room_id = session[:room] = @room.id
+        @reservation.start_date = session[:start] = params[:reservation][:start_date]
+        @reservation.final_date = session[:final] = params[:reservation][:final_date]
+        @reservation.guest_number = session[:guest] = params[:reservation][:guest_number].to_i
+        if @reservation.valid?
+            current_range = @reservation.start_date..@reservation.final_date 
+            @reservation.total_price = session[:price] = check_value(current_range)
+            flash.now[:notice] = "Pre-reserva feita com sucesso."    
+            return  render 'reservations/confirm', status: 422
+
+        else
+            flash.now[:notice] = "Pre-reserva não pode ser feita, data já foi reservada ou número hóspedes é maior do que a o quarto suporta."    
+            return render :check, status: 422
+        end 
     end
    
-    private
     def cancel_reservation
-        p @reservation
+        if @reservation.start_date < 7.day.from_now 
+            flash.now[:notice] = "A reserva não pode ser cancelada com menos de 7 dias para o check in."    
+            return render :show, status: 422 
+        else
+           @reservation.update(active: false)
+            redirect_to room_reservation_path(@room, @reservation), notice: 'Reserva cancelada com sucesso.'
+        end
+       
     end
+
+    private
+   
 
     def set_reservation
         @reservation = Reservation.find(params[:id])

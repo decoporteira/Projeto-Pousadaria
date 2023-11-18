@@ -6,7 +6,7 @@
     <dt>Preço da reserva:</dt>
     <dd><%= number_to_currency(@reservation.total_price, locale: :'pt-BR') %></dd>
     <dt>Hóspedes:</dt>
-    <dd><%= @reservation.guest_number %></dd>
+    <dd><%= @reservation.guest_number%></dd>
     <dt>Check-in:</dt>
     <dd><%= I18n.l(session[:start].to_date) %></dd>
     <dt>Check-out:</dt>

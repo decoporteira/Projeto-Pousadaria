@@ -3,6 +3,8 @@
   <dl>
     <dt>Nome:</dt>
     <dd><%= @room.name %></dd>
+    <dt>Status da reserva:</dt>
+    <dd><%= @reservation.active %></dd>
     <dt>Número de hóspedes:</dt>
     <dd><%= @reservation.guest_number %></dd>
     <dt>Preço total da estadia:</dt>
@@ -18,4 +20,5 @@
     <dd><%= @inn.check_out.strftime('%H:%M') %></dd>
   </dl>
 </div>
-<%= button_to "Cancelar Reserva", cancel_guest_registration_path(@reservation)%>
+<%= button_to "Cancelar Reserva", cancel_reservation_room_reservation_path(@reservation), method: :post%>
+</div>

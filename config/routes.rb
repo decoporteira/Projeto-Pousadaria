@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get 'check', on: :collection
       get 'confirm', on: :collection
       post 'validates', on: :collection
+      post 'cancel_reservation', on: :member
       
     end
   end
