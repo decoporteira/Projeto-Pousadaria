@@ -7,19 +7,24 @@ Rails.application.routes.draw do
   
   root to: "home#index"
   resources :inns, only: [:new, :create, :index, :show, :edit, :update] do 
+    get 'show_reservation', on: :member
     get 'cities', on: :collection
     get 'search', on: :collection
     get 'advanced_search', on: :collection
     get 'advanced_search_results', on: :collection
+    get 'reservations', on: :collection
+    get 'stay_list', on: :collection
   end
   resources :rooms, only: [:new, :create, :index, :show, :edit, :update, :destroy]  do
     get 'pre_reservation', on: :member
-    #post 'check_room', on: :member
     resources :reservations, only: [:new, :create, :show] do
       get 'check', on: :collection
+      get 'stay', on: :member
       get 'confirm', on: :collection
       post 'validates', on: :collection
       post 'cancel_reservation', on: :member
+      post 'cancel_reservation_by_owner', on: :member
+      post 'check_in', on: :member                              
       
     end
   end

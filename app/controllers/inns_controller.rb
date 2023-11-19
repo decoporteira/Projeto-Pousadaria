@@ -9,7 +9,6 @@ class InnsController < ApplicationController
     end
 
     def index
-        current_owner
         @inn = Inn.find_by(owner_id: current_owner.id) 
     end
 
@@ -58,9 +57,20 @@ class InnsController < ApplicationController
         @inns = Inn.all
     end
 
-    
     def advanced_search_results
         @inns = Inn.where("pet = ? AND (trade_name LIKE ? OR neighborhood LIKE ? OR city LIKE ?) ", params['pet'], "%#{params['query']}%", "%#{params['query']}%", "%#{params['query']}%")
+    end
+
+    def reservations
+        @inn = Inn.find_by(owner_id: current_owner)
+        @rooms = @inn.rooms
+        
+    end
+
+    def stay_list
+        @inn = Inn.find_by(owner_id: current_owner)
+        @rooms = @inn.rooms
+        
     end
 
     private

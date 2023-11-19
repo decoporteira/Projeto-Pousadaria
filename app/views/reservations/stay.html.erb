@@ -1,0 +1,10 @@
+<h1>Detalhes da estadia</h1>
+<div>
+  <dl>
+    <%= render 'details' %>
+    <dt>Dia real do check in:</dt>
+    <dd><%=  I18n.l(@reservation.check_in_date.to_date) %></dd>
+    <dt>Hora real do check in:</dt>
+    <dd><%= @reservation.check_in_time.strftime('%H:%M') %></dd>
+  </dl>
+</div>

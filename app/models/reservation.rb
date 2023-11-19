@@ -9,7 +9,7 @@ class Reservation < ApplicationRecord
   validates :code, presence: true
   validates :code, uniqueness: true
   before_validation :generate_code, on: :create
-  enum active: { cancelada: false, ativa: true }
+  enum status: {  canceled: 0, active: 1, 'active stay': 3    }
  
 
   def number_of_guests
@@ -33,7 +33,7 @@ class Reservation < ApplicationRecord
 
   def validate_dates  
     current_range = (self.start_date..self.final_date)
-    ranges = Reservation.where(room_id: self.room_id, active: true)
+    ranges = Reservation.where(room_id: self.room_id, status: :active)
     ranges.each do |range|
      new_range = range.start_date..range.final_date
       if (current_range.overlaps?new_range) && (self.id != range.id)

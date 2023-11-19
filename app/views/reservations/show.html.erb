@@ -1,24 +1,14 @@
 <h1>Detalhes da Reserva</h1>
 <div>
   <dl>
-    <dt>Nome:</dt>
-    <dd><%= @room.name %></dd>
-    <dt>Status da reserva:</dt>
-    <dd><%= @reservation.active %></dd>
-    <dt>Número de hóspedes:</dt>
-    <dd><%= @reservation.guest_number %></dd>
-    <dt>Preço total da estadia:</dt>
-    <dd><%= number_to_currency(@reservation.total_price, locale: :'pt-BR') %></dd>
-    <dt>Dia da entranda:</dt>
-    <dd><%= I18n.l(@reservation.start_date.to_date) %></dd>
-    <dt>Dia da saída:</dt>
-    <dd><%= I18n.l(@reservation.final_date.to_date) %></dd>
-    <dd><%= @inn.payment_methods %></dd>
-    <dt>Check in:</dt>
-    <dd><%= @inn.check_in.strftime('%H:%M') %></dd>
-    <dt>Check out:</dt>
-    <dd><%= @inn.check_out.strftime('%H:%M') %></dd>
+    <%= render 'details' %>
   </dl>
 </div>
-<%= button_to "Cancelar Reserva", cancel_reservation_room_reservation_path(@reservation), method: :post%>
-</div>
+<% if owner_signed_in? %>
+  <% if @reservation.active? %>
+    <%= button_to "Check in", check_in_room_reservation_path(@room, @reservation), method: :post%>
+    <%= button_to "Cancelar reserva", cancel_reservation_by_owner_room_reservation_path(@room, @reservation), method: :post%>
+  <% end %>
+<% else %>
+  <%= button_to "Cancelar Reserva", cancel_reservation_room_reservation_path(@room, @reservation), method: :post%>
+<% end %>

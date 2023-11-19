@@ -1,8 +1,9 @@
 class ReservationsController < ApplicationController
-    before_action :authenticate_guest!, only: [:new, :show]
-    before_action :set_room, only: [:new, :show, :check, :confirm, :validates, :create, :cancel_reservation]
-    before_action :set_inn, only: [:new, :show, :create, :cancel_reservation]
-    before_action :set_reservation, only: [:show, :cancel_reservation]
+    before_action :authenticate_guest!, only: [:new]
+    before_action :authenticate_guest_or_owner!, only: [:show]
+    before_action :set_room, only: [:new, :show, :check, :confirm, :validates, :create, :cancel_reservation, :check_in, :stay, :cancel_reservation_by_owner]
+    before_action :set_inn, only: [:new, :show, :create, :cancel_reservation, :check_in, :stay, :cancel_reservation_by_owner]
+    before_action :set_reservation, only: [:show, :cancel_reservation, :check_in, :stay, :cancel_reservation_by_owner]
     
 
     def index
@@ -22,7 +23,7 @@ class ReservationsController < ApplicationController
     end
     
     def list
-        @reservations = Reservation.where(guest_id: current_guest.id, active: true)
+        @reservations = Reservation.where(guest_id: current_guest.id, status: :active)
     end
 
     def check
@@ -34,6 +35,7 @@ class ReservationsController < ApplicationController
         @reservation = Reservation.new(set_params)
         @reservation.guest_id = current_guest.id
         @reservation.room_id = @room.id
+        @reservation.status = 1
 
         
         if @reservation.save()
@@ -80,10 +82,34 @@ class ReservationsController < ApplicationController
             flash.now[:notice] = "A reserva não pode ser cancelada com menos de 7 dias para o check in."    
             return render :show, status: 422 
         else
-           @reservation.update(active: false)
+           @reservation.update(status: :canceled)
             redirect_to room_reservation_path(@room, @reservation), notice: 'Reserva cancelada com sucesso.'
         end
        
+    end
+
+    def cancel_reservation_by_owner
+        if @reservation.start_date.to_date <= Date.today - 2 
+            @reservation.update_column(:status, :canceled)
+            redirect_to room_reservation_path(@room, @reservation), notice: 'Reserva cancelada com sucesso.'
+        else
+            flash.now[:notice] = "A reserva não pode ser cancelada antes do segundo dia do Check in"    
+            return render :show, status: 422 
+        end
+    end
+
+    def check_in
+        if @reservation.start_date >= Date.today
+            @reservation.update!(status: :'active stay', check_in_date: Date.today, check_in_time: Time.zone.now)
+            return redirect_to stay_room_reservation_path(@room, @reservation), notice: "Check in do hóspede feito com sucesso"
+        else
+            flash.now[:notice] = "O check in não pode ser feito antes do dia de entrada da reserva."    
+            return render :show, status: 422 
+        end
+    end
+
+    def stay
+
     end
 
     private
@@ -120,5 +146,11 @@ class ReservationsController < ApplicationController
 
     def set_params
         reservation_params = params.require(:reservation).permit(:guest_number, :start_date, :final_date, :total_price, :room_id, :guest_id)
+    end
+
+    def authenticate_guest_or_owner!
+        unless owner_signed_in? || guest_signed_in?
+            redirect_to root_path, alert: 'Você precisa estar logado para ter acesso a essa informação.'
+        end
     end
 end

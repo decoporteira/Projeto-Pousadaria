@@ -1,0 +1,18 @@
+<h1>Todas as reservas</h1>
+<% @rooms.each do |room|%>
+  <dl>
+    <% room.reservations.where(status: :'active stay').each do |reservation|%>
+      <dt>Nome do quarto:</dt>
+      <dd><%= link_to reservation.room.name, stay_room_reservation_path(reservation.room, reservation) %></dd>
+      <dt>Check in:</dt>
+      <dd><%= I18n.l(reservation.start_date.to_date)%></dd>
+      <dt>Check out:</dt>
+      <dd><%= I18n.l(reservation.final_date.to_date)%></dd>
+      <dt>Código da reserva:</dt>
+      <dd><%= reservation.code%></dd>
+      <dt>Quantidade de hóspedes:</dt>
+      <dd><%= reservation.guest_number%></dd>
+      <p>-----------------------------------------</p>
+    <%end%>
+  <% end %>
+</dl>

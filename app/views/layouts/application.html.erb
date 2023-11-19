@@ -13,6 +13,8 @@
       <nav class='d-flex justify-content-center align-items-center'>
         <%= link_to "Início", root_path, class:'px-3' %>
         <% if owner_signed_in? %>
+          <%= link_to 'Reservas', reservations_inns_path, class:'px-3'%>
+          <%= link_to 'Estadias ativas', stay_list_inns_path, class:'px-3'%>
           <%= link_to 'Cadastrar pousada', new_inn_path, class:'px-3'%>
           <%= link_to 'Pousada', inns_path, class:'px-3' %>
           <%= link_to 'Quartos', rooms_path, class:'px-3'%>

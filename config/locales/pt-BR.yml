@@ -2,3 +2,6 @@ pt-BR:
   found:
     one: "encontrada"
     other: "encontradas"
+  canceled: "cancelada"
+  active: "ativa"
+  "active stay": "estadia ativa"

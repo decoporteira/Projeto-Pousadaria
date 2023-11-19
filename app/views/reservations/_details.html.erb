@@ -1,0 +1,19 @@
+<dt>Nome do quarto:</dt>
+<dd><%= @room.name %></dd>
+<dt>Código da reserva:</dt>
+<dd><%= @reservation.code %></dd>
+<dt>Status da reserva:</dt>
+<dd><%= I18n.t(@reservation.status) %></dd>
+<dt>Número de hóspedes:</dt>
+<dd><%= @reservation.guest_number %></dd>
+<dt>Preço total da estadia:</dt>
+<dd><%= number_to_currency(@reservation.total_price, locale: :'pt-BR') %></dd>
+<dt>Check in:</dt>
+<dd><%= I18n.l(@reservation.start_date.to_date) %></dd>
+<dt>Check out:</dt>
+<dd><%= I18n.l(@reservation.final_date.to_date) %></dd>
+<dd><%= @inn.payment_methods %></dd>
+<dt>Horário de check in:</dt>
+<dd><%= @inn.check_in.strftime('%H:%M') %></dd>
+<dt>Horário de check out:</dt>
+<dd><%= @inn.check_out.strftime('%H:%M') %></dd>

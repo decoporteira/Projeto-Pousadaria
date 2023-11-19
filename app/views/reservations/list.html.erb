@@ -6,11 +6,11 @@
     <dl>
       <% @reservations.each do |reservation| %>
         <dt>Nome do quarto:</dt>
-        <dd> <%= link_to "#{reservation.room.name}",  room_reservation_path(reservation.room, reservation)%></dd>
+        <dd> <%= link_to reservation.room.name,  room_reservation_path(reservation.room, reservation)%></dd>
         <dt>Código da reserva:</dt>
         <dd><%= reservation.code %></dd>
         <dt>Status da reserva:</dt>
-        <dd><%= reservation.active %></dd>
+        <dd><%= I18n.t(reservation.status) %></dd>
         <dt>Número de hóspedes:</dt>
         <dd><%= reservation.guest_number %></dd>
         <dt>Preço total da estadia:</dt>

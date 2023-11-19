@@ -46,7 +46,6 @@
   <div>
     <%= f.label :pet %>
     <%= f.select :pet, options_for_select(Inn.pets.map {|key, value| [key.titleize, Inn.pets.key(value)]}, @inn.pet) %>
-    <%#= f.text_field :pet %>
   </div>
   <div>
     <%= f.label :rules %>
