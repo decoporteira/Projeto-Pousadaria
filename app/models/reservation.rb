@@ -9,7 +9,7 @@ class Reservation < ApplicationRecord
   validates :code, presence: true
   validates :code, uniqueness: true
   before_validation :generate_code, on: :create
-  enum status: {  canceled: 0, active: 1, 'active stay': 3    }
+  enum status: {  canceled: 0, active: 1, 'active stay': 3, ended: 4   }
  
 
   def number_of_guests

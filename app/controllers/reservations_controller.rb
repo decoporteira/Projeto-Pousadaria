@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
     before_action :authenticate_guest!, only: [:new]
     before_action :authenticate_guest_or_owner!, only: [:show]
-    before_action :set_room, only: [:new, :show, :check, :confirm, :validates, :create, :cancel_reservation, :check_in, :stay, :cancel_reservation_by_owner]
-    before_action :set_inn, only: [:new, :show, :create, :cancel_reservation, :check_in, :stay, :cancel_reservation_by_owner]
-    before_action :set_reservation, only: [:show, :cancel_reservation, :check_in, :stay, :cancel_reservation_by_owner]
+    before_action :set_room, only: [:new, :show, :check, :confirm, :validates, :create, :cancel_reservation, :check_in, :stay, :cancel_reservation_by_owner, :check_out]
+    before_action :set_inn, only: [:new, :show, :create, :cancel_reservation, :check_in, :stay, :cancel_reservation_by_owner, :check_out]
+    before_action :set_reservation, only: [:show, :cancel_reservation, :check_in, :stay, :cancel_reservation_by_owner, :check_out]
     
 
     def index
@@ -106,6 +106,17 @@ class ReservationsController < ApplicationController
             flash.now[:notice] = "O check in não pode ser feito antes do dia de entrada da reserva."    
             return render :show, status: 422 
         end
+    end
+
+    def check_out
+            if Time.zone.now > @inn.check_out
+                new_price = check_value(@reservation.check_in_date..1.day.from_now)
+            else
+                new_price = check_value(@reservation.check_in_date..Date.today)
+            end
+
+            @reservation.update!(status: :'ended', check_out_date: Date.today, check_out_time: Time.zone.now, total_price: new_price)
+            return redirect_to stay_room_reservation_path(@room, @reservation), notice: "Check out do hóspede feito com sucesso"
     end
 
     def stay

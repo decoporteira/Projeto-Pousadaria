@@ -6,5 +6,16 @@
     <dd><%=  I18n.l(@reservation.check_in_date.to_date) %></dd>
     <dt>Hora real do check in:</dt>
     <dd><%= @reservation.check_in_time.strftime('%H:%M') %></dd>
+    <% if @reservation.ended? %>
+      <dt>Dia real do check out:</dt>
+      <dd><%=  I18n.l(@reservation.check_out_date.to_date) %></dd>
+      <dt>Hora real do check out:</dt>
+      <dd><%= @reservation.check_out_time.strftime('%H:%M') %></dd>
+    <%end%>
   </dl>
+  <%= form_tag(check_out_room_reservation_path, method: :post) do %>
+    <%= text_field_tag(:payment, nil, placeholder: 'Forma de pagamento escolhida') %>
+    <%= submit_tag('Check out') %>
+  <% end %>
+  <%#=button_to 'Check out', check_out_room_reservation_path, method: :post, params: { check_in: @reservation.check_in_date }  %>
 </div>

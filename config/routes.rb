@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       post 'validates', on: :collection
       post 'cancel_reservation', on: :member
       post 'cancel_reservation_by_owner', on: :member
+      post 'check_out', on: :member
       post 'check_in', on: :member                              
       
     end
