@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_20_163314) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_20_174637) do
   create_table "guests", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -88,6 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_163314) do
     t.time "check_in_time"
     t.date "check_out_date"
     t.time "check_out_time"
+    t.string "payment"
     t.index ["guest_id"], name: "index_reservations_on_guest_id"
     t.index ["room_id"], name: "index_reservations_on_room_id"
   end

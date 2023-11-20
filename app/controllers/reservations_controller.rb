@@ -109,13 +109,13 @@ class ReservationsController < ApplicationController
     end
 
     def check_out
-            if Time.zone.now > @inn.check_out
-                new_price = check_value(@reservation.check_in_date..1.day.from_now)
+            if Time.zone.now.strftime('%H:%M') > @inn.check_out.strftime('%H:%M')
+                new_price = check_value(@reservation.check_in_date..1.day.from_now)  
             else
                 new_price = check_value(@reservation.check_in_date..Date.today)
-            end
+            end 
 
-            @reservation.update!(status: :'ended', check_out_date: Date.today, check_out_time: Time.zone.now, total_price: new_price)
+            @reservation.update!(status: :'ended', check_out_date: Date.today, check_out_time: Time.zone.now, total_price: new_price, payment: params["payment"])
             return redirect_to stay_room_reservation_path(@room, @reservation), notice: "Check out do hóspede feito com sucesso"
     end
 
