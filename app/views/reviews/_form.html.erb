@@ -1,0 +1,20 @@
+<%= form_with(model: [@room, @reservation, @review] ) do |f| %>
+  <div>
+    <%= f.label :rating %>
+    <%= f.radio_button :rating, '0' %> 0<br />
+    <%= f.radio_button :rating, '1' %> 1<br />
+    <%= f.radio_button :rating, '2' %> 2<br />
+    <%= f.radio_button :rating, '3' %> 3<br />
+    <%= f.radio_button :rating, '4' %> 4<br />
+    <%= f.radio_button :rating, '5' %> 5<br />
+  </div>
+  <div>
+    <%= f.label :comment %>
+    <%= f.text_area :comment%>
+  </div>
+  <div>
+    <%#= f.hidden_field :reservation_id, value: @reservation_id %>
+    <%= f.submit 'Salvar' %>
+  </div>
+<% end %>
+Nota

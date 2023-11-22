@@ -11,7 +11,7 @@
   <% end %>
 <% elsif  guest_signed_in? %>
   <% if @reservation.ended? %>
-    <%= link_to "Avaliar estadia", new_review_path%>
+    <%= link_to "Avaliar estadia", new_room_reservation_review_path(@room, @reservation)%>
   <% end %>
   <%= button_to "Cancelar Reserva", cancel_reservation_room_reservation_path(@room, @reservation), method: :post%>
 <% end %>

@@ -1,0 +1,12 @@
+<h1>Conte-nos como foi sua experiência na <%= @inn.trade_name%></h1>
+Nome do quarto: <%= @room.name %>
+Código da reserva: <%= @reservation.code %>
+<% if(@review.errors.any?)%>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @review.errors.full_messages.each do |msg|%>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= render 'form'%>

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :rooms, only: [:new, :create, :index, :show, :edit, :update, :destroy]  do
     get 'pre_reservation', on: :member
     resources :reservations, only: [:new, :create, :show] do
+      resources :reviews, only: [:new, :create, :show]
       get 'check', on: :collection
       get 'stay', on: :member
       get 'confirm', on: :collection
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
     end
    
   end
-  resources :review, only: [:new]
+  
   resources :prices, only: [:new, :create, :show, :edit, :update, :destroy] 
   get 'list', to: 'reservations#list'
 
