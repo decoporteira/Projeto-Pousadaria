@@ -1,7 +1,8 @@
 require 'rails_helper'
+include ActiveSupport::Testing::TimeHelpers
 
 describe 'Owner confirma o check in do hóspede ' do
-    include ActiveSupport::Testing::TimeHelpers
+   
     it 'e vê todas as hospedagens ativas' do
         #Arrange
         owner_one = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
@@ -126,7 +127,6 @@ describe 'Owner confirma o check in do hóspede ' do
             
             #act
             
-        
             login_as(owner_one, scope: :owner)
             visit(stay_room_reservation_path(room_one, reservation))
             fill_in 'payment', with: 'Pix'

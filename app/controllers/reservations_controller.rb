@@ -23,7 +23,7 @@ class ReservationsController < ApplicationController
     end
     
     def list
-        @reservations = Reservation.where(guest_id: current_guest.id, status: :active)
+        @reservations = Reservation.where(guest_id: current_guest.id, status: [:active, :ended])
     end
 
     def check

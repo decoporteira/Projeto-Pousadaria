@@ -28,7 +28,9 @@ Rails.application.routes.draw do
       post 'check_in', on: :member                              
       
     end
+   
   end
+  resources :review, only: [:new]
   resources :prices, only: [:new, :create, :show, :edit, :update, :destroy] 
   get 'list', to: 'reservations#list'
 

@@ -9,6 +9,9 @@
     <%= button_to "Check in", check_in_room_reservation_path(@room, @reservation), method: :post%>
     <%= button_to "Cancelar reserva", cancel_reservation_by_owner_room_reservation_path(@room, @reservation), method: :post%>
   <% end %>
-<% else %>
+<% elsif  guest_signed_in? %>
+  <% if @reservation.ended? %>
+    <%= link_to "Avaliar estadia", new_review_path%>
+  <% end %>
   <%= button_to "Cancelar Reserva", cancel_reservation_room_reservation_path(@room, @reservation), method: :post%>
 <% end %>

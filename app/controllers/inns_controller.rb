@@ -1,6 +1,6 @@
 class InnsController < ApplicationController
     before_action :authenticate_owner!, only: [:edit]
-    before_action :set_inn, only: [:show, :edit, :update] 
+    before_action :set_inn, only: [:show, :edit, :update, :create_payment_methods] 
     before_action :cant_edit, only: [:edit, :update, :destroy]
 
  
@@ -15,23 +15,23 @@ class InnsController < ApplicationController
     def show
     end
 
-    def edit  
+    def edit
     end
 
     def create  
-       
         @inn = Inn.new(inn_params)
         @inn.owner_id = current_owner.id
+
         if @inn.save()
-           redirect_to root_path, notice: "Pousada cadastrada com sucesso."
+            redirect_to root_path, notice: "Pousada cadastrada com sucesso."
         else
             flash.now[:notice] = "Pousada não cadastrada."
             render :new, status: 422
         end
     end
     def update
-        @inn.update(inn_params)
-        if @inn.save()
+      
+        if @inn.update(inn_params)
            redirect_to inn_path(@inn), notice: 'Pousada alterada com sucesso.'
         else  
             flash.now[:notice] = "Pousada não alterada."
@@ -76,8 +76,21 @@ class InnsController < ApplicationController
     private
 
     
+    def create_payment_methods(payment_methods_params)
+        payment_methods_params.each do |method, value|
+            payment_method = PaymentMethod.new
+          # Convert the string value to a boolean
+          boolean_value = value == "1"
+        
+          # Create a PaymentMethod instance with the boolean value
+          @inn.payment_method.create!(
+            method.to_sym => boolean_value
+          )
+        end
+    end
+
     def inn_params
-        inn_params = params.require(:inn).permit(:trade_name, :company_name, :registration_number, :phone, :email, :address, :neighborhood, :city, :zip_code, :description, :payment_methods, :pet, :rules, :check_in, :check_out, :status, )
+        inn_params = params.require(:inn).permit(:trade_name, :company_name, :registration_number, :phone, :email, :address, :neighborhood, :city, :zip_code, :description, :pet, :rules, :check_in, :check_out, :status, :payment_methods)
     end
 
     def set_inn
@@ -88,4 +101,5 @@ class InnsController < ApplicationController
         current_owner.id
         redirect_to root_path unless @inn.owner_id == current_owner.id
     end
+
 end

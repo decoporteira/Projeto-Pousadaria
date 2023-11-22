@@ -36,7 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_174637) do
     t.string "city"
     t.string "zip_code"
     t.text "description"
-    t.string "payment_methods"
     t.integer "pet"
     t.text "rules"
     t.time "check_in"
@@ -45,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_174637) do
     t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payment_methods"
     t.index ["owner_id"], name: "index_inns_on_owner_id"
   end
 

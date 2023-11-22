@@ -4,10 +4,10 @@ describe 'Usuário visita tela de detalhes de Pousada' do
     it 'a partir do menu na index' do
         owner = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password', role: 1)
         login_as(owner, :scope => :owner)
-        Inn.create!(trade_name: 'Pousada de Teste', company_name: 'Pousada de Teste LTDA', registration_number: '5454354355435', phone: '23243423432', email: 'pousada@amores.com', address: 'Rua das Covas, 123', 
-                    neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', payment_methods: 'Apenas PIX', pet: 'permitidos', rules: 'Não pode ouvir música alta.',
+        Inn.create!(trade_name: 'Pousada de Teste', company_name: 'Pousada de Teste LTDA', registration_number: '5454354355435', phone: '23243423432', email: 'pousada@amores.com', payment_methods: 'Cartão de crédito', address: 'Rua das Covas, 123', 
+                    neighborhood: 'Centro', city: 'Juiz de Fora', zip_code: '389434-923', description: 'A melhor Pousada do mundo.', pet: 'permitidos', rules: 'Não pode ouvir música alta.',
                         check_in: '12:00', check_out: '14:00', status: "ativa", owner_id: owner.id)
-
+                                     
         visit(root_path)
         click_on 'Pousada'
         click_on 'Detalhes'
@@ -24,7 +24,7 @@ describe 'Usuário visita tela de detalhes de Pousada' do
         expect(page).to have_content('Cidade: Juiz de Fora')
         expect(page).to have_content('CEP: 389434-923')
         expect(page).to have_content('Descrição: A melhor Pousada do mundo.')
-        expect(page).to have_content('Formas de Pagamento: Apenas PIX')
+        expect(page).to have_content('Formas de Pagamento: Cartão de crédito')
         expect(page).to have_content('Animais: permitidos')
         expect(page).to have_content('Regras: Não pode ouvir música alta.')
         expect(page).to have_content('Entrada: 12:00')

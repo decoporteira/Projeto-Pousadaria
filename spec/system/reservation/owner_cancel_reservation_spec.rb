@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActiveSupport::Testing::TimeHelpers
 
 describe 'Owner confirma o check in do hóspede ' do
     it 'e ve o botão de cancelar reserva' do
@@ -10,10 +11,10 @@ describe 'Owner confirma o check in do hóspede ' do
         guest = Guest.create!(name: 'Bianca', cpf: '32132131221', email: 'bianca@guest.com', password: 'password')
         
         allow(SecureRandom).to receive(:alphanumeric).and_return('12345678')
-        allow(Date).to receive(:today).and_return Date.new(2023,11,16)
-        reservation = Reservation.create!(guest_number: 1, start_date:  Date.today, final_date:  7.day.from_now, room_id: room_one.id,  guest_id: guest.id, total_price: 300)
-        allow(Date).to receive(:today).and_return Date.new(2023,11,19)
         
+            reservation = Reservation.create!(guest_number: 1, start_date:  Date.today, final_date:  7.day.from_now, room_id: room_one.id,  guest_id: guest.id, total_price: 300)
+       
+       
         #act
         login_as(owner_one, scope: :owner)
         visit(room_reservation_path(reservation.room, reservation))
@@ -24,8 +25,8 @@ describe 'Owner confirma o check in do hóspede ' do
         expect(page).to have_content('Status da reserva: ativa')
         expect(page).to have_content('Nome do quarto: Quarto Zelda') 
         expect(page).to have_content('Número de hóspedes: 1')
-        expect(page).to have_content("Check in: 16/11/2023") 
-        expect(page).to have_content("Check out: 27/11/2023") 
+        expect(page).to have_content("Check in: #{I18n.l(Date.today.to_date)}") 
+        expect(page).to have_content("Check out: #{I18n.l(7.day.from_now.to_date)}") 
         expect(page).to have_content('Cancelar reserva')
             
     end
@@ -55,7 +56,7 @@ describe 'Owner confirma o check in do hóspede ' do
         expect(page).to have_content('Nome do quarto: Quarto Zelda') 
         expect(page).to have_content('Número de hóspedes: 1')
         expect(page).to have_content("Check in: 16/11/2023") 
-        expect(page).to have_content("Check out: 27/11/2023") 
+        expect(page).to have_content("Check out: 29/11/2023") 
     
             
     end

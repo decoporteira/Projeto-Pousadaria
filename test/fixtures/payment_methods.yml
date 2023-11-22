@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  credit_card: false
+  debit_card: false
+  pix: false
+  cash: false
+
+two:
+  credit_card: false
+  debit_card: false
+  pix: false
+  cash: false

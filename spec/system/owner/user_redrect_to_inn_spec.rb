@@ -43,7 +43,7 @@ describe 'Usuário criar conta' do
         #act
         login_as(owner, :scope => :owner)
         visit(root_path)
-        click_on 'Seus dados'
+        click_on 'Perfil'
         
         expect(current_path).to eq new_inn_path
         expect(page).to have_content 'Você não tem uma pousada cadastrada. Por favor, complete seu cadastro.'
