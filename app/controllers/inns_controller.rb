@@ -13,6 +13,18 @@ class InnsController < ApplicationController
     end
 
     def show
+        @reviews = Review.joins(reservation: { room: :inn }).where(inns: { id: @inn.id })
+        @reviews_rating = 'Sem avaliações.'
+
+        if @reviews.any?
+            @reviews_rating = 0
+            @reviews.each do |review|
+                review.rating
+                @reviews_rating += review.rating
+            end
+            @reviews_rating = @reviews_rating / @reviews.length
+        end
+        
     end
 
     def edit

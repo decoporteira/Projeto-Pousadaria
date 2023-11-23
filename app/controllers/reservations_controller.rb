@@ -20,6 +20,9 @@ class ReservationsController < ApplicationController
     end
 
     def show
+        if @reservation.review 
+            @review = @reservation.review
+        end
        
     end
     

@@ -1,10 +1,11 @@
 class ReviewsController < ApplicationController
     before_action :set_reservation, only: [:new, :create, :show, :edit, :update]
     before_action :set_room, only: [:new, :create, :show, :edit, :update]
-    before_action :set_inn, only: [:new, :show, :edit]
+    before_action :set_inn, only: [:new, :show, :edit, :create]
     before_action :set_review, only: [:edit, :show, :update]
 
     def new
+        
         @review = Review.new
     end
 
@@ -17,11 +18,12 @@ class ReviewsController < ApplicationController
     def create
         @review = Review.new(set_params)
         @review.reservation_id = @reservation.id
-        if @review.save!()
+        if @review.save()
             redirect_to room_reservation_review_path(@room, @reservation, @review), notice: 'Avaliação enviada com sucesso.'
         else  
             flash.now[:notice] = "Avaliação não enviada, tente novamente."
-            render :new, status: 422
+           
+            render :new, :inn_id => @inn, status: 422
         end
         
     end
