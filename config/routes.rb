@@ -35,5 +35,9 @@ Rails.application.routes.draw do
   
   resources :prices, only: [:new, :create, :show, :edit, :update, :destroy] 
   get 'list', to: 'reservations#list'
-
+  namespace :api do
+    namespace :v1 do
+      resources :inns, only: [:index]
+    end
+  end
 end
