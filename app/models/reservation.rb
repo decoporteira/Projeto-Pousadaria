@@ -32,6 +32,7 @@ class Reservation < ApplicationRecord
   end
 
   def validate_dates  
+    
     current_range = (self.start_date..self.final_date)
     ranges = Reservation.where(room_id: self.room_id, status: :active)
     ranges.each do |range|
@@ -40,6 +41,24 @@ class Reservation < ApplicationRecord
         return errors.add(:start_date, " - Essa data já está em uso.")
       end
     end
+  end
+
+  def check_value(room)
+    range = self.start_date..self.final_date
+    total_price = 0
+    season_days = 0
+    range.each do |day|
+        room.prices.each do |price|
+            if day.between?(price.start_date, price.final_date) == true
+                total_price = total_price + price.new_rate
+                season_days += 1
+            end
+        end
+    end
+    
+    total_regular_price = range.count - season_days
+    total_price = total_price + (total_regular_price * room.daily_rate)
+    
   end
 
   def generate_code

@@ -37,7 +37,12 @@ Rails.application.routes.draw do
   get 'list', to: 'reservations#list'
   namespace :api do
     namespace :v1 do
-      resources :inns, only: [:index]
+      resources :inns, only: [:index] do
+        get 'rooms', on: :collection
+        get 'inn_details', on: :collection
+        get 'room', on: :collection
+       
+      end
     end
   end
 end

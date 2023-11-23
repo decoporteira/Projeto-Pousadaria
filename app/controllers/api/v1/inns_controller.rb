@@ -1,25 +1,53 @@
 class Api::V1::InnsController < Api::V1::ApiController
     
     def index
-    # query = params['query']
-    # inns = Inn.where("trade_name LIKE ? OR neighborhood LIKE ? OR city LIKE ? AND status = ", "%#{query}%", "%#{query}%", "%#{query}%", :ativa ).order(:trade_name)
-        inns = Inn.where(status: :ativa).order(:trade_name)
-        render status: 200, json: inns.as_json(except: [:created_at, :updated_at]) 
+        query = params['query']
+        inns = Inn.where("status = 0 AND (trade_name LIKE ? OR neighborhood LIKE ? OR city LIKE ?) ", "%#{params['query']}%", "%#{params['query']}%", "%#{params['query']}%").order(:trade_name)
+        render status: 200, json: inns.as_json(except: [:created_at, :updated_at])
     end
 
     def rooms
-        #Listagem de quartos de uma pousada: a partir do ID de uma pousada, uma lista com informações sobre os tipos de quartos disponíveis para hospedagem nesta pousada.
+      
+        inn = Inn.find(params[:id])
+        inn.rooms
+        render status: 200, json: inn.rooms.as_json(except: [:created_at, :updated_at]) 
 
     end
 
-    def show
-        #Detalhes de uma pousada: a partir do ID de uma pousada, todos os detalhes da pousada exceto CNPJ e razão social. O retorno deve incluir a nota média da pousada a partir de suas avaliações. Caso não existam avaliações o campo deve vir em branco.
+    def inn_details
+        
+        inn = Inn.find(params[:id])
+        @reviews = Review.joins(reservation: { room: :inn }).where(inns: { id: inn.id })
+        @reviews_rating = 'Sem avaliações.'
+
+        if @reviews.any?
+            @reviews_rating = 0
+            @reviews.each do |review|
+                review.rating
+                @reviews_rating += review.rating
+            end
+            @reviews_rating = @reviews_rating / @reviews.length
+        end
+        
+        render status: 200, json: inn.as_json(except: [:created_at, :updated_at]).merge(nota: @reviews_rating)
 
     end
 
 
-    def reservation
-        #Consulta de disponibilidade: informando um ID de um quarto, a data de entrada, data de saída e quantidade de hóspedes, deve ser possível verificar a disponibilidade para reserva. Em caso positivo deve ser retornado o valor da reserva, em caso negativo deve haver uma mensagem de erro no corpo da resposta.
+    def room
+        room = Room.find(params[:id])
+        reservation = Reservation.new
+        reservation.start_date = params[:start]
+        reservation.final_date = params[:end]
+        reservation.guest_number =params[:guests]
+        reservation.room_id = room.id
+        if reservation.valid?
+            reservation.total_price = reservation.check_value(room)
+            return render status: 200, json: reservation.as_json(only: [:total_price])
+        else
+            render status: 422, json: { error: "Reverva não pode ser feita nessa dia ou número de hóspedes é maior que o quarto comporta." }
+        end
+       
 
     end
 end
