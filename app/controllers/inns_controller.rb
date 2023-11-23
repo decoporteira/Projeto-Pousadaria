@@ -73,9 +73,14 @@ class InnsController < ApplicationController
         
     end
 
+
+    def reviews_list
+        @inn = Inn.find_by(owner_id: current_owner)
+        @reviews = Review.joins(reservation: { room: :inn }).where(inns: { id: @inn.id })
+    end
+
     private
 
-    
     def create_payment_methods(payment_methods_params)
         payment_methods_params.each do |method, value|
             payment_method = PaymentMethod.new

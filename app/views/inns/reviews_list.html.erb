@@ -1,0 +1,20 @@
+<h1>Avaliações das Estadias:</h1>
+<div>
+  <dl>
+    <% if @reviews.nil?%>
+      <h2>Sem avaliações no momento.</h2>
+    <% else %>
+      <% @reviews.each do |review| %>
+        <dt>Nome do quarto:</dt>
+        <dd><%= review.reservation.room.name%></dd>
+        <dt>Nota:</dt>
+        <dd><%= review.rating%></dd>
+        <dt>Comentário:</dt>
+        <dd><%= review.comment%></dd>
+        <dt>Nome do hóspede:</dt>
+        <dd><%= Guest.find(review.reservation.guest_id).name%></dd>
+        <%= link_to 'Responder', edit_room_reservation_review_path(review.reservation.room, review.reservation, review) %>
+      <% end %>
+    <% end %>
+  </dl>
+</div>

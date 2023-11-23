@@ -15,6 +15,7 @@ class ReservationsController < ApplicationController
         @reservation.guest_number = session[:guest]
         @reservation.start_date = session[:start]
         @reservation.final_date = session[:final]
+       
         range = @reservation.start_date..@reservation.final_date
     end
 
@@ -52,6 +53,7 @@ class ReservationsController < ApplicationController
         @reservation.guest_number
         @reservation.start_date
         @reservation.final_date
+        
         
     end
     

@@ -13,7 +13,7 @@ describe 'Guest cancela a reserva' do
         room_two = Room.create!(name: 'Quarto Pokémon', description: 'Descrição: Quarto idéntico ao quarto de Ash.', size: 20, guest: 2, daily_rate: 20, balcony: 'possui', air_conditioner: 'não possui ar condicionado', available: 'sim', tv: 'não possui tv', wardrobe: 'possui guarda-roupas', safe: 'possui cofre', accessible: 'quarto sem acessibilidade', inn_id: inn_two.id)  
 
         Reservation.create!(guest_number: guest.id, start_date: 20.day.from_now , final_date: 25.day.from_now, room_id: room_one.id,  guest_id: guest.id, total_price: 400)
-        Reservation.create!(guest_number: guest.id, start_date: 8.day.from_now , final_date: 12.day.from_now, room_id: room_two.id,  guest_id: guest.id, total_price: 300)
+        Reservation.create!(guest_number: guest.id, start_date: 9.day.from_now , final_date: 12.day.from_now, room_id: room_two.id,  guest_id: guest.id, total_price: 300)
         
         allow(SecureRandom).to receive(:alphanumeric).and_return('12345678')
         #act

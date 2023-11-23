@@ -1,6 +1,6 @@
 class Reservation < ApplicationRecord
   belongs_to :room
-  has_many :reviews
+  has_one :review
   validates :guest_number, presence: true
   validates :start_date, presence: true
   validates :final_date, presence: true

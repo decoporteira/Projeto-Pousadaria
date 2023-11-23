@@ -1,0 +1,31 @@
+<h1>Responda a Avaliação sobre a reserva:  </h1>
+<h3><%= @room.name %> | Reserva: <%= @reservation.code %></h3>
+Nome do hóspede: <%= Guest.find(@reservation.guest_id).name%>
+<%= @review.rating%>
+<% if(@review.errors.any?)%>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @review.errors.full_messages.each do |msg|%>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<div>
+  <dl>
+    <dt>Nome do quarto:</dt>
+    <dd><%= @room.name%></dd>
+    <dt>Nota:</dt>
+    <dd><%= @review.rating%></dd>
+    <dt>Comentário:</dt>
+    <dd><%= @review.comment%></dd>
+  </dl>
+</div>
+<%= form_with(model: [@room, @reservation, @review] ) do |f| %>
+  <div>
+    <%= f.label :reply %>
+    <%= f.text_area :reply, placeholder: "Digite aqui sua resposta"%>
+  </div>
+  <div>
+    <%= f.submit 'Responder', class:"btn btn-outline-primary" %>
+  </div>
+<% end %>
