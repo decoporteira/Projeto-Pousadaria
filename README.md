@@ -51,4 +51,10 @@ http://127.0.0.1:3000/api/v1/inns/inn_details/?id=1
 
 ---
 
+Pegar confirmação de reserva de um quarto:
+http://127.0.0.1:3000/api/v1/inns/room?id=Id&start=DataChechIn&end=DataCheckOut&guests=QuantidadeDeHospedes'
+
+Exemplo:
+http://127.0.0.1:3000/api/v1/inns/room?id=1&start=23-10-2023&end=25-10-2023&guests=2'
+
 # Projeto-Pousadaria
