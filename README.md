@@ -57,4 +57,20 @@ http://127.0.0.1:3000/api/v1/inns/room?id=Id&start=DataChechIn&end=DataCheckOut&
 Exemplo:
 http://127.0.0.1:3000/api/v1/inns/room?id=1&start=23-10-2023&end=25-10-2023&guests=2'
 
+---
+
+Pegar todas as cidades que possuem um pousada ativa:
+http://127.0.0.1:3000/api/v1/cities/
+
+Exemplo:
+http://127.0.0.1:3000/api/v1/cities/
+
+---
+
+Pegar todas as pousadas ativas de uma cidade:
+http://127.0.0.1:3000/api/v1/inns_by_city?city=NomeDaCidade
+
+Exemplo:
+http://127.0.0.1:3000/api/v1/inns_by_city?city=Juiz de Fora
+
 # Projeto-Pousadaria

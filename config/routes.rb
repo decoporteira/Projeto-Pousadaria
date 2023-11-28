@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'cities', to: 'inns#cities'
+      get 'inns_by_city', to: 'inns#inns_by_city'
       resources :inns, only: [:index] do
         get 'rooms', on: :collection
         get 'inn_details', on: :collection

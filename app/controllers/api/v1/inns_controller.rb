@@ -47,13 +47,16 @@ class Api::V1::InnsController < Api::V1::ApiController
         else
             render status: 422, json: { error: "Reverva não pode ser feita nessa dia ou número de hóspedes é maior que o quarto comporta." }
         end
-       
-
     end
 
     def cities
-        all_active_inns = Inn.where(status: "ativa").order(:city)
-        return render status: 200, json: all_active_inns.as_json(only: [:city])
+        all_active_inns = Inn.ativa.order(:city)
+        cities = all_active_inns.uniq {|item| item.city}
+        return render status: 200, json: cities.as_json(only: [:city])
+    end
 
+    def inns_by_city
+        all_active_inns = Inn.ativa.where("LOWER(city) LIKE ?", "%#{params[:city].downcase}%").order(:city)
+        return render status: 200, json: all_active_inns.as_json(except: [:created_at, :updated_at])
     end
 end

@@ -27,7 +27,7 @@ describe 'Pousadaria API' do
 
     end
 
-    context 'Get /api/v1/inns/?query=muriae' do
+    context 'Get /api/v1/inns/?query=juiz+de+fora' do
         it 'success' do
             #arrange
             owner_one = Owner.create!(name: 'Deco', last_name: 'Pereira', email: 'andre@pousadaria.com', password: 'password')
