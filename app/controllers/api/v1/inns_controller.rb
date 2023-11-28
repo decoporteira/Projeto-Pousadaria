@@ -50,4 +50,10 @@ class Api::V1::InnsController < Api::V1::ApiController
        
 
     end
+
+    def cities
+        all_active_inns = Inn.where(status: "ativa").order(:city)
+        return render status: 200, json: all_active_inns.as_json(only: [:city])
+
+    end
 end
