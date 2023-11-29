@@ -56,7 +56,7 @@ class Api::V1::InnsController < Api::V1::ApiController
     end
 
     def inns_by_city
-        all_active_inns = Inn.ativa.where("LOWER(city) LIKE ?", "%#{params[:city].downcase}%").order(:city)
+        all_active_inns = Inn.ativa.where("LOWER(city) LIKE ?", "%#{params[:city].downcase}%")
         return render status: 200, json: all_active_inns.as_json(except: [:created_at, :updated_at])
     end
 end

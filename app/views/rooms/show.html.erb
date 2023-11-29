@@ -31,7 +31,7 @@
         <dt>Disponibilidade:</dt>
         <dd><%= @room.available %></dd>
       </dl>
-      <% if (current_owner.present? && current_owner.owner?) %>
+      <% if (current_owner.present?) %>
         <h3>Preços por período:</h3>
         <% if @prices.nil? %>
           <p>Não existem preços cadastrado.</p>

@@ -43,7 +43,7 @@
         <dd><%= @inn.status %></dd>
       </dl>
     </div>
-    <% if (current_owner.present? && current_owner.owner?) %>
+    <% if (current_owner.present? ) %>
       <%= link_to 'Editar detalhes', edit_inn_path(@inn)%>
       <% rooms = @inn.rooms%>
     <% else %>
