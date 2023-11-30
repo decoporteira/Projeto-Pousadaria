@@ -6,20 +6,21 @@
       <%=f.text_field :query %>
     </div>
     <div>
-      <%= f.label :pet, 'Animais' %>:
+      <%= f.label :pet, 'Animais' %>
       <%= f.select :pet, options_for_select(Inn.pets.keys.map { |pet| [pet.titleize, Inn.pets[pet]] }) %>
     </div>
     <div>
-      <%= f.label :tv, 'Tv' %>:
+      <%= f.label :tv, 'Tv' %>
       <%= f.select :tv, options_for_select(Room.tvs.keys.map { |tv| [tv.titleize, Room.tvs[tv]] }) %>
     </div>
-    <%=f.submit 'Buscar'%>
+    <div>
+      <%= f.label :accessible, 'Acessibilidade' %>
+      <%= f.select :accessible, options_for_select(Room.accessibles.keys.map { |accessible| [accessible.titleize, Room.accessibles[accessible]] }) %>
+    </div>
+    <div>
+      <%= f.label :air_conditioner, 'Ar condicionado' %>
+      <%= f.select :air_conditioner, options_for_select(Room.air_conditioners.keys.map { |air_conditioner| [air_conditioner.titleize, Room.air_conditioners[air_conditioner]] }) %>
+    </div>
+    <%=f.submit 'Busca avançada'%>
   <% end %>
 </div>
-<%#= aceita pets,  t.integer "balcony"
-    t.integer "air_conditioner"
-    t.integer "tv"
-    t.integer "wardrobe"
-    t.integer "safe"
-    t.integer "accessible"
-    t.integer "available"%>
