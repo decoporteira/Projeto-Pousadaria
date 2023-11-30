@@ -2,6 +2,8 @@ class Inn < ApplicationRecord
   belongs_to :owner
   has_many :rooms, dependent: :destroy
   has_one :payment_method
+  has_many :reservations, through: :rooms
+  has_many :reviews, through: :reservations
   accepts_nested_attributes_for :payment_method
 
   enum pet: [:permitidos, :'não permitidos']
