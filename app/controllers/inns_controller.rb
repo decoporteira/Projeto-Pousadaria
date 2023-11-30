@@ -69,7 +69,7 @@ class InnsController < ApplicationController
     end
 
     def advanced_search_results
-        @inns = Inn.where("pet = ? AND (trade_name LIKE ? OR neighborhood LIKE ? OR city LIKE ?) ", params['pet'], "%#{params['query']}%", "%#{params['query']}%", "%#{params['query']}%")
+        @inns = Inn.joins(:rooms).where("pet = ? AND (trade_name LIKE ? OR neighborhood LIKE ? OR city LIKE ?) AND rooms.tv = ?", params['pet'], "%#{params['query']}%", "%#{params['query']}%", "%#{params['query']}%", params['tv'])
     end
 
     def reservations
