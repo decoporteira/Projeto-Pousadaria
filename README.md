@@ -1,31 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Projeto para o treinamento para o TreinaDev da Campus Code.
 
-Things you may want to cover:
+Um sistema web usando Rails 7.0.8, com a usabilidade de cadastro de poudasas e quartos para aluguel.
 
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
-
-API
-Para pegar os dados de todas as pousadas:
-http://127.0.0.1:3000/api/v1/inns/
+- Sistema de login de usuários
+- Cadastro de pousada
+- Cadastro de quartos
+- Precificação dinâmica
+- Sistema de reservas
+- API com endpoins:
+  API
+  Para pegar os dados de todas as pousadas:
+  http://127.0.0.1:3000/api/v1/inns/
 
 Para pegar os dados de todas as pousadas com infomações específicas:
 http://127.0.0.1:3000/api/v1/inns/?query=ParametroDeBusca
@@ -72,5 +59,9 @@ http://127.0.0.1:3000/api/v1/inns_by_city?city=NomeDaCidade
 
 Exemplo:
 http://127.0.0.1:3000/api/v1/inns_by_city?city=Juiz de Fora
+
+Things you may want to cover:
+
+- Ruby 3.2.0
 
 # Projeto-Pousadaria
