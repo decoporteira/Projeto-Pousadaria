@@ -17,7 +17,7 @@ class Api::V1::InnsController < Api::V1::ApiController
     def inn_details
         
         inn = Inn.find(params[:id])
-        @reviews = Review.joins(reservation: { room: :inn }).where(inns: { id: inn.id })
+        @reviews = Review.joins(reservation: { room: :inn }).where( id: inn.id )
         @reviews_rating = 'Sem avaliações.'
 
         if @reviews.any?

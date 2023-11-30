@@ -24,7 +24,6 @@ class InnsController < ApplicationController
             end
             @reviews_rating = @reviews_rating / @reviews.length
         end
-        
     end
 
     def edit
@@ -57,7 +56,7 @@ class InnsController < ApplicationController
         @active_inns_by_city.each do |name| 
             names << name.trade_name
         end
-        @active_inns_by_city = @active_inns_by_city.sort_by { |element| element[:trade_name] }
+        @active_inns_by_city = @active_inns_by_city.order(:trade_name)
     end
 
     def search

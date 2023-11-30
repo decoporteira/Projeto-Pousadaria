@@ -6,7 +6,7 @@ class PricesController < ApplicationController
 
     def new
         @price = Price.new
-        @room_id = params[:format].to_i
+        @room_id = params[:format]
     end
 
     def edit

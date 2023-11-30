@@ -52,12 +52,6 @@ class ReservationsController < ApplicationController
 
     def confirm
         @reservation = Reservation.new
-        @reservation.total_price
-        @reservation.guest_number
-        @reservation.start_date
-        @reservation.final_date
-        
-        
     end
     
     def validates
@@ -149,7 +143,7 @@ class ReservationsController < ApplicationController
         range.each do |day|
             @room.prices.each do |price|
                 if day.between?(price.start_date, price.final_date) == true
-                    total_price = total_price + price.new_rate
+                    total_price += price.new_rate
                     season_days += 1
                 end
             end
